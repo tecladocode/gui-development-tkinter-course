@@ -23,6 +23,7 @@ main.grid() # Grid is used to create a table like structure. Various positional 
 """
 Below we define two buttons, both of which are children of main.
 Once again we use the .grid() method, this time specifying column and row position of the elements within the container grid.
+We also specify horizontal padding for both buttons using padx. Vertical padding can be added using pady.
 
 The text keyword argument provided to the Button() method specifies the text content of the button.
 The command keyword argument is the name of a function to call when the button is clicked.
