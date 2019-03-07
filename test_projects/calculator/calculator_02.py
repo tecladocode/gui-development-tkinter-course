@@ -68,9 +68,4 @@ for i, button_row in enumerate(buttons.winfo_children()):
     for button in button_row.winfo_children():
         button.grid_configure(padx = 5, pady = 5, row = 1)    # row = 1 is necessary to stop them trying to move onto independent rows.
 
-    """
-    child.configure(command = command = lambda: handle_click(child['text'])) did not solve the repetition issue.
-    For some reason, all of the arguments were set to "+": the text value of the final button.
-    """
-
 root.mainloop()

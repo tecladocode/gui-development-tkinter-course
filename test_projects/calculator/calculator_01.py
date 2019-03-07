@@ -55,7 +55,10 @@ for child in buttons.winfo_children():
 
     """
     child.configure(command = command = lambda: handle_click(child['text'])) did not solve the repetition issue.
-    For some reason, all of the arguments were set to "+": the text value of the final button.
+    All of the values for child['text'] end up being "+", as child in the first line of the for loop shares an extended
+    scope with child inside the lambda function.
+    The value of child['text'] does not get evaluated until the function is called, by which time, the value of child is
+    the button containing the text content, "+".
     """
 
 root.mainloop()
