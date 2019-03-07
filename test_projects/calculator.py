@@ -53,4 +53,9 @@ Below we call the grid_configure method, allowing us to specify x and y padding 
 for child in buttons.winfo_children():
     child.grid_configure(padx = 5, pady = 5)
 
+    """
+    child.configure(command = command = lambda: handle_click(child['text'])) did not solve the repetition issue.
+    For some reason, all of the arguments were set to "+": the text value of the final button.
+    """
+
 root.mainloop()
