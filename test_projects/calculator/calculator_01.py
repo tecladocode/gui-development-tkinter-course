@@ -21,25 +21,25 @@ Passing in a variable to a command can be easily achieved using a lambda functio
 TODO: Another option exists using partials. This may be better, but I need to do more research.
 TODO: I need to see if there is also a better way to deal with the amount of repetition in the following lines.
 """
-ttk.Button(buttons, text = "1", command = lambda: handle_click("1")).grid(column = 1, row = 1)
-ttk.Button(buttons, text = "2", command = lambda: handle_click("2")).grid(column = 2, row = 1)
-ttk.Button(buttons, text = "3", command = lambda: handle_click("3")).grid(column = 3, row = 1)
-ttk.Button(buttons, text = "/", command = lambda: handle_click("/")).grid(column = 4, row = 1)
+ttk.Button(buttons, text = "1").grid(column = 1, row = 1)
+ttk.Button(buttons, text = "2").grid(column = 2, row = 1)
+ttk.Button(buttons, text = "3").grid(column = 3, row = 1)
+ttk.Button(buttons, text = "/").grid(column = 4, row = 1)
 
-ttk.Button(buttons, text = "4", command = lambda: handle_click("4")).grid(column = 1, row = 2)
-ttk.Button(buttons, text = "5", command = lambda: handle_click("5")).grid(column = 2, row = 2)
-ttk.Button(buttons, text = "6", command = lambda: handle_click("6")).grid(column = 3, row = 2)
-ttk.Button(buttons, text = "*", command = lambda: handle_click("*")).grid(column = 4, row = 2)
+ttk.Button(buttons, text = "4").grid(column = 1, row = 2)
+ttk.Button(buttons, text = "5").grid(column = 2, row = 2)
+ttk.Button(buttons, text = "6").grid(column = 3, row = 2)
+ttk.Button(buttons, text = "*").grid(column = 4, row = 2)
 
-ttk.Button(buttons, text = "7", command = lambda: handle_click("7")).grid(column = 1, row = 3)
-ttk.Button(buttons, text = "8", command = lambda: handle_click("8")).grid(column = 2, row = 3)
-ttk.Button(buttons, text = "9", command = lambda: handle_click("9")).grid(column = 3, row = 3)
-ttk.Button(buttons, text = "-", command = lambda: handle_click("-")).grid(column = 4, row = 3)
+ttk.Button(buttons, text = "7").grid(column = 1, row = 3)
+ttk.Button(buttons, text = "8").grid(column = 2, row = 3)
+ttk.Button(buttons, text = "9").grid(column = 3, row = 3)
+ttk.Button(buttons, text = "-").grid(column = 4, row = 3)
 
-ttk.Button(buttons, text = ".", command = lambda: handle_click(".")).grid(column = 1, row = 4)
-ttk.Button(buttons, text = "0", command = lambda: handle_click("0")).grid(column = 2, row = 4)
-ttk.Button(buttons, text = "=", command = lambda: handle_click("=")).grid(column = 3, row = 4)
-ttk.Button(buttons, text = "+", command = lambda: handle_click("+")).grid(column = 4, row = 4)
+ttk.Button(buttons, text = ".").grid(column = 1, row = 4)
+ttk.Button(buttons, text = "0").grid(column = 2, row = 4)
+ttk.Button(buttons, text = "=").grid(column = 3, row = 4)
+ttk.Button(buttons, text = "+").grid(column = 4, row = 4)
 
 """
 winfo is short for window information. The winfo_children() method gets all children of a container.
@@ -52,13 +52,17 @@ Below we call the grid_configure method, allowing us to specify x and y padding 
 """
 for child in buttons.winfo_children():
     child.grid_configure(padx = 5, pady = 5)
-
+    child.configure(command = lambda button = child: handle_click(button['text']))
     """
-    child.configure(command = command = lambda: handle_click(child['text'])) did not solve the repetition issue.
+    child.configure(command = lambda: handle_click(child['text'])) did not solve the repetition issue.
     All of the values for child['text'] end up being "+", as child in the first line of the for loop shares an extended
     scope with child inside the lambda function.
     The value of child['text'] does not get evaluated until the function is called, by which time, the value of child is
     the button containing the text content, "+".
+
+    Fixed the issue by setting a default value for a new lambda argument called button.
+    Default arguments are evaluated when a function is created, not when they are called,
+    meaning we can preserve the value of each iteration of child after the loop completes.
     """
 
 root.mainloop()
