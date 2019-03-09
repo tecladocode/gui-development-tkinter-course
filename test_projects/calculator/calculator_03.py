@@ -29,7 +29,7 @@ featured in the previous calculator iterations.
 
 
         for button in button_row.winfo_children():
-                button.grid_configure(padx = 5, pady = 5, row = 1)
+            button.grid_configure(padx = 5, pady = 5, row = 1)
 
 
 Note that the grid method cannot be called in the create_button function, but I have not found a concrete reason as to why yet.
