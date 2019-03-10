@@ -15,7 +15,10 @@ In our case, the argument passed in is a KeyPress event object:
 def calculate_feet(*args):
     try:
         """
-        The get() method
+        The get() method is used to fetch the value of a StringVar() instance.
+        
+        The set() method is the counterpart of get() and sets the value of 
+        a StringVar() instance.
         """
         value = float(metres_value.get())
         feet_value.set(value * 3.28084)
@@ -37,6 +40,8 @@ allowing it to stretch to the window size in both directions.
 root.columnconfigure(0, weight = 1)
 root.rowconfigure(0, weight = 1)
 
+
+# Here we create two instances of the StringVar() class, which is to track the content of widgets
 feet_value = StringVar()
 metres_value = StringVar()
 
