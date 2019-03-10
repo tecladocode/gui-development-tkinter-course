@@ -5,6 +5,7 @@ class DistanceConverter(Tk):
 
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
+        self.title("Distance Calculator")
 
         container = ttk.Frame(self)
         container.grid(padx = 10, pady = 10, sticky = (E, W))
@@ -64,7 +65,9 @@ class FeetToMetres(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
 
+    def calculate_metres(self, *args):
+        pass
+
 
 root = DistanceConverter()
-root.title("Distance Calculator")
 root.mainloop()
