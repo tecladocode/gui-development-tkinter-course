@@ -100,6 +100,7 @@ Note that bind is attached to a specific element, so it's possible to trigger be
 certain frames. By binding to root, this event will be triggered for all frames, since they are
 all children of root.
 """
-root.bind('<Return>', calculate_feet)
+root.bind("<Return>", calculate_feet)
+root.bind("<KP_Enter>", calculate_feet)    # This bind is for the enter key on a numpad
 
 root.mainloop()
