@@ -32,14 +32,15 @@ We need a fresh canvas each time we plot, or it'll become a total mess.
 def animate(i):
     with open("dummyData.txt", "r") as file:
         lines = [line.strip() for line in file.readlines()]
-        x_vals = []
-        y_vals = []
 
-        for line in lines:
-            x, y = line.split(",")
-            x_vals.append(int(x))
-            y_vals.append(int(y))            
-
+    x_vals = []
+    y_vals = []
+        
+    for line in lines:
+        x, y = line.split(",")
+        x_vals.append(int(x))
+        y_vals.append(int(y))
+    
     ax.clear()
     ax.plot(x_vals, y_vals)
 
