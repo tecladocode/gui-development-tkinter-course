@@ -8,7 +8,7 @@ class CalculatorApp(Tk):
         Tk.__init__(self, *args, **kwargs)    # Initialise Tkinter along with the MainApplication
 
         container = ttk.Frame(self)    # Create an encompassing Frame called container.
-        container.grid(padx = 10, pady = 10)
+        container.grid(padx=10, pady=10)
         
         buttons = Buttons(container, self)    # Assign an instance of the Buttons class to the variable buttons
 
@@ -50,11 +50,11 @@ class Buttons(Frame):
             button_row = [self.create_button(text) for text in text_group]
 
             for j, button in enumerate(button_row):
-                button.grid(column = j, row = i, padx = 5, pady = 5)
+                button.grid(column=j, row=i, padx=5, pady=5)
 
 
     def create_button(self, text):
-        return ttk.Button(text = text, command = lambda: self.handle_click(text))
+        return ttk.Button(text=text, command=lambda: self.handle_click(text))
 
     def handle_click(self, x):
         print(x)
@@ -67,5 +67,5 @@ A way too complicated way to add an icon to the file.
 
 TODO: Look into a better way to add icons to a Tkinter window.
 """
-root.call('wm', 'iconphoto', root._w, PhotoImage(file = os.path.abspath('./test_projects/calculator/calc.gif')))
+root.call('wm', 'iconphoto', root._w, PhotoImage(file=os.path.abspath('./test_projects/calculator/calc.gif')))
 root.mainloop()

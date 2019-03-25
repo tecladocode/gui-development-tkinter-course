@@ -57,14 +57,14 @@ class CurrencyConverter(Tk):
         self.title("Currency Converter")
 
         container = ttk.Frame(self)
-        container.grid(padx = 10, pady = 10, sticky = (E, W))
+        container.grid(padx=10, pady=10, sticky=(E, W))
         
         self.frames = {}
 
         for F in (Home, HistoricalData):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row = 0, column = 0, sticky = (N, S, E, W))
+            frame.grid(row=0, column=0, sticky=(N, S, E, W))
 
         self.show_frame(Home)
 
@@ -78,13 +78,24 @@ class Home(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
 
+        button = ttk.Button(self, text="Historical Data", command=lambda: controller.show_frame(HistoricalData))
+        button.pack()
+
 
 class HistoricalData(Frame):
 
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
 
+        canvas = FigureCanvasTkAgg(fig, self)
+        canvas.show()
+        canvas.get_tk_widget().pack()
+
+        toolbar = NavigationToolbar2TkAgg(canvas, self)
+        toolbar.update()
+        canvas._tkcanvas.pack()
+
 
 root = CurrencyConverter()
-# ani = animation.FuncAnimation(fig, animate, interval=1000)
+ani = animation.FuncAnimation(fig, animate, interval=1000)
 root.mainloop()

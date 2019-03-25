@@ -17,7 +17,7 @@ Frame(master=None, **options)
 In our example, we specify root (the main application window) as the master of the Frame main.
 As an optional config argument, we specify a padding value of 20px on all sides.
 """
-main = ttk.Frame(root, padding = "20")    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
+main = ttk.Frame(root, padding="20")    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
 main.grid() # Grid is used to create a table like structure. Various positional arguments can be provided, but we have provided none.
 
 """
@@ -33,7 +33,7 @@ When a user clicks the Quit button, we call the root.destroy() method.
 
 root.destroy() terminates the mainloop, and since all other widgets are children of root, they get destroyed along with it.
 """
-ttk.Button(main, text = "Greet", command = greet).grid(column = 1, row = 1, padx = 5)
-ttk.Button(main, text = "Quit", command = root.destroy).grid(column = 2, row = 1, padx = 5)
+ttk.Button(main, text="Greet", command=greet).grid(column=1, row=1, padx=5)
+ttk.Button(main, text="Quit", command=root.destroy).grid(column=2, row=1, padx=5)
 
 root.mainloop()

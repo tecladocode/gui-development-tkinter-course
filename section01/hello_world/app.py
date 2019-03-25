@@ -8,6 +8,6 @@ from tkinter import *
 from tkinter import ttk    # ttk is the Python binding to the newer "themed widgets" added in Tk version 8.5
 
 root = Tk()
-ttk.Button(root, text = "Hello, World!").grid()
+ttk.Button(root, text="Hello, World!").grid()
 
 root.mainloop()

@@ -12,7 +12,7 @@ def handle_click(x):
 root = Tk()
 root.title("Calculator")
 
-buttons = ttk.Frame(root, padding = "10")
+buttons = ttk.Frame(root, padding="10")
 buttons.grid()
 
 """
@@ -29,7 +29,7 @@ featured in the previous calculator iterations.
 
 
         for button in button_row.winfo_children():
-            button.grid_configure(padx = 5, pady = 5, row = 1)
+            button.grid_configure(padx=5, pady=5, row=1)
 
 
 Note that the grid method cannot be called in the create_button function, but I have not found a concrete reason as to why yet.
@@ -37,7 +37,7 @@ Notice also that the buttons object above required that the grid method be calle
 This seems to be a common pattern.
 """
 def create_button(text):
-    return ttk.Button(buttons, text = text, command = lambda: handle_click(text))
+    return ttk.Button(buttons, text=text, command=lambda: handle_click(text))
 
 texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'], ['7', '8', '9', '-'], ['.', '0', '=', '+'])
 
@@ -45,6 +45,6 @@ for i, text_group in enumerate(texts):
     button_row = [create_button(text) for text in text_group]
 
     for j, button in enumerate(button_row):
-        button.grid(column = j, row = i, padx = 5, pady = 5)
+        button.grid(column=j, row=i, padx=5, pady=5)
 
 root.mainloop()

@@ -29,7 +29,7 @@ def calculate_feet(*args):
 root = Tk()
 root.title("Distance Converter")
 
-main = ttk.Frame(root, padding = "30 15 30 15")
+main = ttk.Frame(root, padding="30 15 30 15")
 main.grid()
 
 """
@@ -37,8 +37,8 @@ We configure root to have a single row and column, with weight (importance / pri
 This means that as the window expands, priority is given to this row to expand,
 allowing it to stretch to the window size in both directions.
 """
-root.columnconfigure(0, weight = 1)
-root.rowconfigure(0, weight = 1)
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
 
 
 # Here we create two instances of the StringVar() class, which is to track the content of widgets
@@ -65,14 +65,14 @@ A final point of note is the textvariable keyword argument used with Entry. This
 with the content of the Entry field. As such, the value of metres_value will update automatically
 as the content of metres_input gets updated.
 """
-metres_input = ttk.Entry(main, width = 10, textvariable = metres_value)
+metres_input=ttk.Entry(main, width=10, textvariable=metres_value)
 
 """
 The sticky property below anchors a widget to the edges of its container. Compass directions
 are used to specify this behaviour. You can pass in a tuple of values to anchor a widget to more than
 one edge.
 """
-metres_input.grid(column = 2, row = 1, sticky = (E, W))
+metres_input.grid(column=2, row=1, sticky=(E, W))
 
 
 """
@@ -81,13 +81,13 @@ For a label, the text content of that lable updates when the value of the associ
 changes. As such, when the value of feet_value changes, the text content of this Label will be
 instantly updated. 
 """
-ttk.Label(main, textvariable = feet_value).grid(column = 2, row = 2, sticky = (E, W))
-ttk.Button(main, text = "Calculate", command = calculate_feet).grid(column = 1, row = 3, columnspan = 2, sticky = (E, W))
+ttk.Label(main, textvariable=feet_value).grid(column=2, row=2, sticky=(E, W))
+ttk.Button(main, text="Calculate", command=calculate_feet).grid(column=1, row=3, columnspan=2, sticky=(E, W))
 
-ttk.Label(main, text = "metres").grid(column = 1, row = 1, sticky = W, ipadx = 5)
-ttk.Label(main, text = "feet").grid(column = 1, row = 2, sticky = W, ipadx = 5)
+ttk.Label(main, text="metres").grid(column=1, row=1, sticky=W, ipadx=5)
+ttk.Label(main, text="feet").grid(column=1, row=2, sticky=W, ipadx=5)
 
-for child in main.winfo_children(): child.grid_configure(padx = 5, pady = 5)
+for child in main.winfo_children(): child.grid_configure(padx=5, pady=5)
 
 # We can specify a default focus using the focus method on a widget.
 metres_input.focus()
