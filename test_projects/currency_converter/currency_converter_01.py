@@ -43,6 +43,18 @@ def animate(i):
     
     ax.clear()
     ax.plot(x_vals, y_vals)
+    
+    """
+    Tried this shorter alternative, but the fact that the values are strings keeps the y axis from being ordered.
+    Leaving it here, because it highlights a potential error students might run into.
+
+    lines = [line.split(",") for line in lines]
+    x, y = zip(*(line for line in lines))
+    
+    ax.clear()
+    ax.plot(x, y)
+    """
+
 
 class CurrencyConverter(Tk):
 
