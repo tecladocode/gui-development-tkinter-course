@@ -1,5 +1,3 @@
-# https://free.currencyconverterapi.com/
-
 # Import matplotlib and define the backend to TkAgg to help it work with Tkinter.
 import matplotlib
 matplotlib.use("TkAgg")
