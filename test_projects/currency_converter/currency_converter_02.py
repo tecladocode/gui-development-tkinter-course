@@ -40,14 +40,23 @@ The API is relatively simple. Docs can be found here: https://www.currencyconver
 """
 
 url = "https://free.currencyconverterapi.com/api/v6/convert?q=USD_GBP,GBP_USD&compact=ultra&date=2019-01-01&endDate=2019-01-09&apiKey=443eaf8aa1f431564727"
-data = requests.get(url)
-json_data = data.json()
 
-fig = Figure(figsize=(5,5), dpi=100)
-animated_subplot = fig.add_subplot(111)
+fig = Figure(figsize=(10,5), dpi=100)
+a = fig.add_subplot(111)
 
 def animate(i):
-    pass
+    data = requests.get(url)
+    json_data = data.json()
+
+    dates = []
+    rates = []
+
+    for date, rate in json_data['USD_GBP'].items():
+        dates.append(date)
+        rates.append(rate)
+
+    a.clear()
+    a.plot(dates, rates)
 
 class CurrencyConverter(Tk):
 
@@ -97,5 +106,5 @@ class HistoricalData(Frame):
 
 
 root = CurrencyConverter()
-ani = animation.FuncAnimation(fig, animate, interval=1000)
+ani = animation.FuncAnimation(fig, animate, interval=60000) # Request every 60 seconds, since we are strictly limited by the API
 root.mainloop()
