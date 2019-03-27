@@ -65,7 +65,7 @@ A final point of note is the textvariable keyword argument used with Entry. This
 with the content of the Entry field. As such, the value of metres_value will update automatically
 as the content of metres_input gets updated.
 """
-metres_input=ttk.Entry(main, width=10, textvariable=metres_value)
+metres_input = ttk.Entry(main, width=10, textvariable=metres_value)
 
 """
 The sticky property below anchors a widget to the edges of its container. Compass directions

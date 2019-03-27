@@ -17,7 +17,7 @@ Frame(master=None, **options)
 In our example, we specify root (the main application window) as the master of the Frame main.
 As an optional config argument, we specify a padding value of 20px on all sides.
 """
-main = ttk.Frame(root, padding="20")    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
+main = ttk.Frame(root, padding=20)    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
 main.pack(fill=BOTH)
 
 """
