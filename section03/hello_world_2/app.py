@@ -20,8 +20,8 @@ Frame(master=None, **options)
 In our example, we specify root (the main application window) as the master of the Frame main.
 As an optional config argument, we specify a padding value of 20px on all sides.
 """
-main = ttk.Frame(
-    root, padding=20)    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
+# Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
+main = ttk.Frame(root, padding=20)
 main.pack(fill="both")
 
 """
@@ -35,10 +35,11 @@ When a user clicks the Quit button, we call the root.destroy() method.
 
 root.destroy() terminates the mainloop, and since all other widgets are children of root, they get destroyed along with it.
 """
-ttk.Button(main, text="Greet", command=greet).pack(
-    side="left", fill="x", expand=True)
-ttk.Button(main, text="Quit", command=root.destroy).pack(
-    side="right", fill="x", expand=True)
+greet_button = ttk.Button(main, text="Greet", command=greet)
+greet_button.pack(side="left", fill="x", expand=True)
+
+quit_button = ttk.Button(main, text="Quit", command=root.destroy)
+quit_button.pack(side="right", fill="x", expand=True)
 
 """
 Missing off the value for the expand parameter causes the buttons to stay the same size, centered in a pair of imaginary boxes
