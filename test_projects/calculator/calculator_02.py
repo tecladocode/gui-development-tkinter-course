@@ -6,8 +6,11 @@ Right now the handle_click function simply takes a value specific to each button
 This is intended as a demonstration of how to pass in variables to Button commands.
 In the standard case, they simply take a function name.
 """
+
+
 def handle_click(x):
     print(x)
+
 
 root = tk.Tk()
 root.title("Calculator")
@@ -66,6 +69,7 @@ for i, button_row in enumerate(buttons.winfo_children()):
     button_row.grid(row=i)
 
     for button in button_row.winfo_children():
-        button.grid_configure(padx=5, pady=5, row=0)    # row=0 is necessary to stop them trying to move onto independent rows.
+        # row=0 is necessary to stop them trying to move onto independent rows.
+        button.grid_configure(padx=5, pady=5, row=0)
 
 root.mainloop()

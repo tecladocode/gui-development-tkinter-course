@@ -1,21 +1,15 @@
 # TODO: Add labels to the plot axes, and add a graph title
 
-# Import matplotlib and define the backend to TkAgg to help it work with Tkinter.
+import json
+import requests
+from tkinter import ttk
+import tkinter as tk
+import matplotlib.animation as animation
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import matplotlib
 matplotlib.use("TkAgg")
 
-# Gross import to grab the matplotlib canvas and the built in buttons to zoom and select, etc.
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
-from matplotlib.figure import Figure
-
-# Import animation to let us live update the plots.
-import matplotlib.animation as animation
-
-import tkinter as tk
-from tkinter import ttk
-
-import requests
-import json
 
 """
 Grab historical USD value data from free.currencyconverterapi.com
@@ -44,6 +38,7 @@ url = "https://free.currencyconverterapi.com/api/v6/convert?q=USD_GBP&compact=ul
 fig = Figure(figsize=(10, 5), dpi=100)
 a = fig.add_subplot(111)
 
+
 def animate(i):
     data = requests.get(url)
     json_data = data.json()
@@ -52,6 +47,7 @@ def animate(i):
 
     a.clear()
     a.plot(dates, rates)
+
 
 class CurrencyConverter(tk.Tk):
 
@@ -62,13 +58,13 @@ class CurrencyConverter(tk.Tk):
 
         container = ttk.Frame(self)
         container.grid(padx=10, pady=10, sticky=("E", "W"))
-        
+
         self.frames = {}
 
         for F in (Home, HistoricalData):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky=("N", "S", "E", "W"))
+            frame.grid(row=0, column=0, sticky=("N", "E", "S", "W"))
 
         self.show_frame(Home)
 
@@ -82,7 +78,8 @@ class Home(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        button = ttk.Button(self, text="Historical Data", command=lambda: controller.show_frame(HistoricalData))
+        button = ttk.Button(self, text="Historical Data",
+                            command=lambda: controller.show_frame(HistoricalData))
         button.pack()
 
 
@@ -101,5 +98,6 @@ class HistoricalData(tk.Frame):
 
 
 root = CurrencyConverter()
-ani = animation.FuncAnimation(fig, animate, interval=60000) # Request every 60 seconds, since we are strictly limited by the API
+# Request every 60 seconds, since we are strictly limited by the API
+ani = animation.FuncAnimation(fig, animate, interval=60000)
 root.mainloop()

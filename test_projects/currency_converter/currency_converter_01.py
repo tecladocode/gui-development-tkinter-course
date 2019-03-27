@@ -1,18 +1,16 @@
 # TODO: Add labels to the plot axes, and add a graph title
 
+from tkinter import ttk
+import tkinter as tk
+# Import animation to let us live update the plots.
+import matplotlib.animation as animation
 # Import matplotlib and define the backend to TkAgg to help it work with Tkinter.
+from matplotlib.figure import Figure
+# Gross import to grab the matplotlib canvas and the built in buttons to zoom and select, etc.
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import matplotlib
 matplotlib.use("TkAgg")
 
-# Gross import to grab the matplotlib canvas and the built in buttons to zoom and select, etc.
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
-from matplotlib.figure import Figure
-
-# Import animation to let us live update the plots.
-import matplotlib.animation as animation
-
-import tkinter as tk
-from tkinter import ttk
 
 # Defines a matplotlib figure
 fig = Figure(figsize=(5, 5), dpi=100)
@@ -29,21 +27,23 @@ We extract the data to two lists: x_vals and y_vals, then call plot to actually 
 ax.clear() here is a vital line, as it prevents us from painting over the same information every interval.
 We need a fresh canvas each time we plot, or it'll become a total mess.
 """
+
+
 def animate(i):
     with open("dummyData.txt", "r") as file:
         lines = [line.strip() for line in file.readlines()]
 
     x_vals = []
     y_vals = []
-        
+
     for line in lines:
         x, y = line.split(",")
         x_vals.append(int(x))
         y_vals.append(int(y))
-    
+
     ax.clear()
     ax.plot(x_vals, y_vals)
-    
+
     """
     Tried this shorter alternative, but the fact that the values are strings keeps the y axis from being ordered.
     Leaving it here, because it highlights a potential error students might run into.
@@ -65,7 +65,7 @@ class CurrencyConverter(tk.Tk):
 
         container = ttk.Frame(self)
         container.grid(padx=10, pady=10, sticky=("E", "W"))
-        
+
         self.frames = {}
 
         # The comma below is important as we need an iterable object for for. Without it, it tries to iterate over the class.
@@ -88,7 +88,7 @@ class DummyData(tk.Frame):
 
         # Define a canvas, passing in some figure object.
         canvas = FigureCanvasTkAgg(fig, self)
-        
+
         # The show method paints our canvas. Until we actually call show, all the plotting is done in the backend.
         canvas.draw()
         canvas.get_tk_widget().pack()

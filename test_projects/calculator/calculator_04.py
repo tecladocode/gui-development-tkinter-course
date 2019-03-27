@@ -2,15 +2,19 @@ import tkinter as tk
 from tkinter import ttk
 import os    # Imported to allow for finding the calculator icon
 
+
 class CalculatorApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)    # Initialise Tkinter along with the MainApplication
+        # Initialise Tkinter along with the MainApplication
+        tk.Tk.__init__(self, *args, **kwargs)
 
-        container = ttk.Frame(self)    # Create an encompassing Frame called container.
+        # Create an encompassing Frame called container.
+        container = ttk.Frame(self)
         container.grid(padx=10, pady=10)
-        
-        buttons = Buttons(container, self)    # Assign an instance of the Buttons class to the variable buttons
+
+        # Assign an instance of the Buttons class to the variable buttons
+        buttons = Buttons(container, self)
 
         """
         We can define a dictionary called frames which will allow us to store references to
@@ -18,8 +22,9 @@ class CalculatorApp(tk.Tk):
         to some event. See the show_frame method below. 
         """
         self.frames = {}
-        self.frames[Buttons] = buttons    # Create an entry in the dictionary for the Buttons frame
-        
+        # Create an entry in the dictionary for the Buttons frame
+        self.frames[Buttons] = buttons
+
         buttons.grid()
 
         # We use the show_frame method to set the current view to the Buttons Frame
@@ -44,14 +49,14 @@ class Buttons(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'], ['7', '8', '9', '-'], ['.', '0', '=', '+'])
+        texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'],
+                 ['7', '8', '9', '-'], ['.', '0', '=', '+'])
 
         for i, text_group in enumerate(texts):
             button_row = [self.create_button(text) for text in text_group]
 
             for j, button in enumerate(button_row):
                 button.grid(column=j, row=i, padx=5, pady=5)
-
 
     def create_button(self, text):
         return ttk.Button(text=text, command=lambda: self.handle_click(text))

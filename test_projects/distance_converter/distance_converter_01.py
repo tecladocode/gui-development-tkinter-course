@@ -12,11 +12,13 @@ In our case, the argument passed in is a KeyPress event object:
 
     <KeyPress event state=Mod2|0x2000 keysym=Return keycode=36 char='\r' x=76 y=38>
 """
+
+
 def calculate_feet(*args):
     try:
         """
         The get() method is used to fetch the value of a StringVar() instance.
-        
+
         The set() method is the counterpart of get() and sets the value of 
         a StringVar() instance.
         """
@@ -25,7 +27,8 @@ def calculate_feet(*args):
     except ValueError:
         # For now we're just going to ignore faulty inputs to the converter
         pass
-    
+
+
 root = tk.Tk()
 root.title("Distance Converter")
 
@@ -81,13 +84,16 @@ For a label, the text content of that lable updates when the value of the associ
 changes. As such, when the value of feet_value changes, the text content of this Label will be
 instantly updated. 
 """
-ttk.Label(main, textvariable=feet_value).grid(column=2, row=2, sticky=("E", "W"))
-ttk.Button(main, text="Calculate", command=calculate_feet).grid(column=1, row=3, columnspan=2, sticky=("E", "W"))
+ttk.Label(main, textvariable=feet_value).grid(
+    column=2, row=2, sticky=("E", "W"))
+ttk.Button(main, text="Calculate", command=calculate_feet).grid(
+    column=1, row=3, columnspan=2, sticky=("E", "W"))
 
 ttk.Label(main, text="metres").grid(column=1, row=1, sticky="W", ipadx=5)
 ttk.Label(main, text="feet").grid(column=1, row=2, sticky="W", ipadx=5)
 
-for child in main.winfo_children(): child.grid_configure(padx=5, pady=5)
+for child in main.winfo_children():
+    child.grid_configure(padx=5, pady=5)
 
 # We can specify a default focus using the focus method on a widget.
 metres_input.focus()
@@ -101,6 +107,7 @@ certain frames. By binding to root, this event will be triggered for all frames,
 all children of root.
 """
 root.bind("<Return>", calculate_feet)
-root.bind("<KP_Enter>", calculate_feet)    # This bind is for the enter key on a numpad
+# This bind is for the enter key on a numpad
+root.bind("<KP_Enter>", calculate_feet)
 
 root.mainloop()

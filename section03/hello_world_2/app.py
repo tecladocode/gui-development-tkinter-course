@@ -1,11 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
 
+
 def greet():
     print("Hello, World!")
 
+
 root = tk.Tk()
-root.title("Hello")    # Window title is defined on root using the .title() method
+# Window title is defined on root using the .title() method
+root.title("Hello")
 
 """
 Below we define a Frame using the .Frame() method.
@@ -17,7 +20,8 @@ Frame(master=None, **options)
 In our example, we specify root (the main application window) as the master of the Frame main.
 As an optional config argument, we specify a padding value of 20px on all sides.
 """
-main = ttk.Frame(root, padding=20)    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
+main = ttk.Frame(
+    root, padding=20)    # Padding is defined in pixels by default. Multiple values possible to specify padding in different directions.
 main.pack(fill="both")
 
 """
@@ -31,8 +35,10 @@ When a user clicks the Quit button, we call the root.destroy() method.
 
 root.destroy() terminates the mainloop, and since all other widgets are children of root, they get destroyed along with it.
 """
-ttk.Button(main, text="Greet", command=greet).pack(side="left", fill="x", expand=True)
-ttk.Button(main, text="Quit", command=root.destroy).pack(side="right", fill="x", expand=True)
+ttk.Button(main, text="Greet", command=greet).pack(
+    side="left", fill="x", expand=True)
+ttk.Button(main, text="Quit", command=root.destroy).pack(
+    side="right", fill="x", expand=True)
 
 """
 Missing off the value for the expand parameter causes the buttons to stay the same size, centered in a pair of imaginary boxes

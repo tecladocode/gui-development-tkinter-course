@@ -6,8 +6,11 @@ Right now the handle_click function simply takes a value specific to each button
 This is intended as a demonstration of how to pass in variables to Button commands.
 In the standard case, they simply take a function name.
 """
+
+
 def handle_click(x):
     print(x)
+
 
 root = tk.Tk()
 root.title("Calculator")
@@ -36,10 +39,14 @@ Note that the grid method cannot be called in the create_button function, but I 
 Notice also that the buttons object above required that the grid method be called after the object was created.
 This seems to be a common pattern.
 """
+
+
 def create_button(text):
     return ttk.Button(buttons, text=text, command=lambda: handle_click(text))
 
-texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'], ['7', '8', '9', '-'], ['.', '0', '=', '+'])
+
+texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'],
+         ['7', '8', '9', '-'], ['.', '0', '=', '+'])
 
 for i, text_group in enumerate(texts):
     button_row = [create_button(text) for text in text_group]
