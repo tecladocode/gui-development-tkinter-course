@@ -1,11 +1,11 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 import os    # Imported to allow for finding the calculator icon
 
-class CalculatorApp(Tk):
+class CalculatorApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)    # Initialise Tkinter along with the MainApplication
+        tk.Tk.__init__(self, *args, **kwargs)    # Initialise Tkinter along with the MainApplication
 
         container = ttk.Frame(self)    # Create an encompassing Frame called container.
         container.grid(padx=10, pady=10)
@@ -40,10 +40,10 @@ class CalculatorApp(Tk):
         frame.tkraise()
 
 
-class Buttons(Frame):
+class Buttons(tk.Frame):
 
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent)
         texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'], ['7', '8', '9', '-'], ['.', '0', '=', '+'])
 
         for i, text_group in enumerate(texts):
@@ -67,5 +67,5 @@ A way too complicated way to add an icon to the file.
 
 TODO: Look into a better way to add icons to a Tkinter window.
 """
-root.call('wm', 'iconphoto', root._w, PhotoImage(file=os.path.abspath('./test_projects/calculator/calc.gif')))
+root.call('wm', 'iconphoto', root._w, tk.PhotoImage('calc.gif'))
 root.mainloop()

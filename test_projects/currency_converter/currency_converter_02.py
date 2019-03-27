@@ -1,15 +1,17 @@
+# TODO: Add labels to the plot axes, and add a graph title
+
 # Import matplotlib and define the backend to TkAgg to help it work with Tkinter.
 import matplotlib
 matplotlib.use("TkAgg")
 
 # Gross import to grab the matplotlib canvas and the built in buttons to zoom and select, etc.
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 
 # Import animation to let us live update the plots.
 import matplotlib.animation as animation
 
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 
 import requests
@@ -46,32 +48,27 @@ def animate(i):
     data = requests.get(url)
     json_data = data.json()
 
-    dates = []
-    rates = []
-
-    for date, rate in json_data['USD_GBP'].items():
-        dates.append(date)
-        rates.append(rate)
+    dates, rates = zip(*json_data['USD_GBP'].items())
 
     a.clear()
     a.plot(dates, rates)
 
-class CurrencyConverter(Tk):
+class CurrencyConverter(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)
+        tk.Tk.__init__(self, *args, **kwargs)
 
         self.title("Currency Converter")
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10, sticky=(E, W))
+        container.grid(padx=10, pady=10, sticky=("E", "W"))
         
         self.frames = {}
 
         for F in (Home, HistoricalData):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky=(N, S, E, W))
+            frame.grid(row=0, column=0, sticky=("N", "S", "E", "W"))
 
         self.show_frame(Home)
 
@@ -80,25 +77,25 @@ class CurrencyConverter(Tk):
         frame.tkraise()
 
 
-class Home(Frame):
+class Home(tk.Frame):
 
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent)
 
         button = ttk.Button(self, text="Historical Data", command=lambda: controller.show_frame(HistoricalData))
         button.pack()
 
 
-class HistoricalData(Frame):
+class HistoricalData(tk.Frame):
 
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent)
 
         canvas = FigureCanvasTkAgg(fig, self)
-        canvas.show()
+        canvas.draw()
         canvas.get_tk_widget().pack()
 
-        toolbar = NavigationToolbar2TkAgg(canvas, self)
+        toolbar = NavigationToolbar2Tk(canvas, self)
         toolbar.update()
         canvas._tkcanvas.pack()
 

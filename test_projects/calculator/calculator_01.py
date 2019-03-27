@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 
 """
@@ -9,7 +9,7 @@ In the standard case, they simply take a function name.
 def handle_click(x):
     print(x)
 
-root = Tk()
+root = tk.Tk()
 root.title("Calculator")
 
 buttons = ttk.Frame(root, padding="10")

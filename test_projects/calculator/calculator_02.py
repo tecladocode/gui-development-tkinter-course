@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 
 """
@@ -9,16 +9,16 @@ In the standard case, they simply take a function name.
 def handle_click(x):
     print(x)
 
-root = Tk()
+root = tk.Tk()
 root.title("Calculator")
 
 buttons = ttk.Frame(root, padding="10")
 buttons.grid()
 
+row_0 = ttk.Frame(buttons)
 row_1 = ttk.Frame(buttons)
 row_2 = ttk.Frame(buttons)
 row_3 = ttk.Frame(buttons)
-row_4 = ttk.Frame(buttons)
 
 """
 Passing in a variable to a command can be easily achieved using a lambda function.

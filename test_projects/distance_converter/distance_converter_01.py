@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 
 """
@@ -26,7 +26,7 @@ def calculate_feet(*args):
         # For now we're just going to ignore faulty inputs to the converter
         pass
     
-root = Tk()
+root = tk.Tk()
 root.title("Distance Converter")
 
 main = ttk.Frame(root, padding="30 15 30 15")
@@ -42,8 +42,8 @@ root.rowconfigure(0, weight=1)
 
 
 # Here we create two instances of the StringVar() class, which is to track the content of widgets
-feet_value = StringVar()
-metres_value = StringVar()
+feet_value = tk.StringVar()
+metres_value = tk.StringVar()
 
 """
 Below we use a few new properties, and a new widget type.
@@ -72,7 +72,7 @@ The sticky property below anchors a widget to the edges of its container. Compas
 are used to specify this behaviour. You can pass in a tuple of values to anchor a widget to more than
 one edge.
 """
-metres_input.grid(column=2, row=1, sticky=(E, W))
+metres_input.grid(column=2, row=1, sticky=("E", "W"))
 
 
 """
@@ -81,11 +81,11 @@ For a label, the text content of that lable updates when the value of the associ
 changes. As such, when the value of feet_value changes, the text content of this Label will be
 instantly updated. 
 """
-ttk.Label(main, textvariable=feet_value).grid(column=2, row=2, sticky=(E, W))
-ttk.Button(main, text="Calculate", command=calculate_feet).grid(column=1, row=3, columnspan=2, sticky=(E, W))
+ttk.Label(main, textvariable=feet_value).grid(column=2, row=2, sticky=("E", "W"))
+ttk.Button(main, text="Calculate", command=calculate_feet).grid(column=1, row=3, columnspan=2, sticky=("E", "W"))
 
-ttk.Label(main, text="metres").grid(column=1, row=1, sticky=W, ipadx=5)
-ttk.Label(main, text="feet").grid(column=1, row=2, sticky=W, ipadx=5)
+ttk.Label(main, text="metres").grid(column=1, row=1, sticky="W", ipadx=5)
+ttk.Label(main, text="feet").grid(column=1, row=2, sticky="W", ipadx=5)
 
 for child in main.winfo_children(): child.grid_configure(padx=5, pady=5)
 

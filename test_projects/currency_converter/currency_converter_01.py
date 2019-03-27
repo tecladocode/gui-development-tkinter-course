@@ -1,19 +1,21 @@
+# TODO: Add labels to the plot axes, and add a graph title
+
 # Import matplotlib and define the backend to TkAgg to help it work with Tkinter.
 import matplotlib
 matplotlib.use("TkAgg")
 
 # Gross import to grab the matplotlib canvas and the built in buttons to zoom and select, etc.
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 
 # Import animation to let us live update the plots.
 import matplotlib.animation as animation
 
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 
 # Defines a matplotlib figure
-fig = Figure(figsize=(5,5), dpi=100)
+fig = Figure(figsize=(5, 5), dpi=100)
 
 # Convention seems to be to call these subplots a or ax
 ax = fig.add_subplot(111)
@@ -54,15 +56,15 @@ def animate(i):
     """
 
 
-class CurrencyConverter(Tk):
+class CurrencyConverter(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)
+        tk.Tk.__init__(self, *args, **kwargs)
 
         self.title("Currency Converter")
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10, sticky=(E, W))
+        container.grid(padx=10, pady=10, sticky=("E", "W"))
         
         self.frames = {}
 
@@ -70,7 +72,7 @@ class CurrencyConverter(Tk):
         for F in (DummyData,):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky=(N, S, E, W))
+            frame.grid(row=0, column=0, sticky=("N", "S", "E", "W"))
 
         self.show_frame(DummyData)
 
@@ -79,20 +81,20 @@ class CurrencyConverter(Tk):
         frame.tkraise()
 
 
-class DummyData(Frame):
+class DummyData(tk.Frame):
 
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent)
 
         # Define a canvas, passing in some figure object.
         canvas = FigureCanvasTkAgg(fig, self)
         
         # The show method paints our canvas. Until we actually call show, all the plotting is done in the backend.
-        canvas.show()
+        canvas.draw()
         canvas.get_tk_widget().pack()
 
         # This toolbar gives us the standard matplotlib buttons below our plot.
-        toolbar = NavigationToolbar2TkAgg(canvas, self)
+        toolbar = NavigationToolbar2Tk(canvas, self)
         toolbar.update()
         canvas._tkcanvas.pack()
 
