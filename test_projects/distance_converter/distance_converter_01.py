@@ -75,7 +75,7 @@ The sticky property below anchors a widget to the edges of its container. Compas
 are used to specify this behaviour. You can pass in a tuple of values to anchor a widget to more than
 one edge.
 """
-metres_input.grid(column=2, row=1, sticky=("E", "W"))
+metres_input.grid(column=2, row=1, sticky="EW")
 
 
 """
@@ -85,9 +85,9 @@ changes. As such, when the value of feet_value changes, the text content of this
 instantly updated. 
 """
 ttk.Label(main, textvariable=feet_value).grid(
-    column=2, row=2, sticky=("E", "W"))
+    column=2, row=2, sticky="EW")
 ttk.Button(main, text="Calculate", command=calculate_feet).grid(
-    column=1, row=3, columnspan=2, sticky=("E", "W"))
+    column=1, row=3, columnspan=2, sticky="EW")
 
 ttk.Label(main, text="metres").grid(column=1, row=1, sticky="W", ipadx=5)
 ttk.Label(main, text="feet").grid(column=1, row=2, sticky="W", ipadx=5)

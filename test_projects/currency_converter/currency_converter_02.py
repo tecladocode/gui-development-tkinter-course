@@ -57,14 +57,14 @@ class CurrencyConverter(tk.Tk):
         self.title("Currency Converter")
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10, sticky=("E", "W"))
+        container.grid(padx=10, pady=10, sticky="EW")
 
         self.frames = {}
 
         for F in (Home, HistoricalData):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky=("N", "E", "S", "W"))
+            frame.grid(row=0, column=0, sticky="NESW")
 
         self.show_frame(Home)
 
