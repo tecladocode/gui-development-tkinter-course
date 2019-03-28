@@ -28,10 +28,10 @@ class DistanceConverter(tk.Tk):
         frame.tkraise()
 
 
-class MetresToFeet(tk.Frame):
+class MetresToFeet(ttk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
@@ -71,10 +71,10 @@ class MetresToFeet(tk.Frame):
             pass
 
 
-class FeetToMetres(tk.Frame):
+class FeetToMetres(ttk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()

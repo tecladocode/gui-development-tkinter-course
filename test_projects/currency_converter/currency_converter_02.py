@@ -73,20 +73,20 @@ class CurrencyConverter(tk.Tk):
         frame.tkraise()
 
 
-class Home(tk.Frame):
+class Home(ttk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
 
         button = ttk.Button(self, text="Historical Data",
                             command=lambda: controller.show_frame(HistoricalData))
         button.pack()
 
 
-class HistoricalData(tk.Frame):
+class HistoricalData(ttk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
 
         canvas = FigureCanvasTkAgg(fig, self)
         canvas.draw()

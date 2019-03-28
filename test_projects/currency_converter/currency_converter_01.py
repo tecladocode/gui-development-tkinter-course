@@ -81,10 +81,10 @@ class CurrencyConverter(tk.Tk):
         frame.tkraise()
 
 
-class DummyData(tk.Frame):
+class DummyData(ttk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
 
         # Define a canvas, passing in some figure object.
         canvas = FigureCanvasTkAgg(fig, self)

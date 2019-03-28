@@ -45,10 +45,10 @@ class CalculatorApp(tk.Tk):
         frame.tkraise()
 
 
-class Buttons(tk.Frame):
+class Buttons(ttk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
         texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'],
                  ['7', '8', '9', '-'], ['.', '0', '=', '+'])
 
@@ -67,10 +67,5 @@ class Buttons(tk.Frame):
 
 root = CalculatorApp()
 
-"""
-A way too complicated way to add an icon to the file.
-
-TODO: Look into a better way to add icons to a Tkinter window.
-"""
 root.call('wm', 'iconphoto', root._w, tk.PhotoImage('calc.gif'))
 root.mainloop()
