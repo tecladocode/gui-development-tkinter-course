@@ -45,20 +45,20 @@ quit_button.pack(side="right", fill="x", expand=True)
 Missing off the value for the expand parameter causes the buttons to stay the same size, centered in a pair of imaginary boxes
 which is filling up the space as the page increases in size.
 """
-#ttk.Button(main, text="Greet", command=greet).pack(side=LEFT, fill=X)
-#ttk.Button(main, text="Quit", command=root.destroy).pack(side=RIGHT, fill=X)
+# ttk.Button(main, text="Greet", command=greet).pack(side=LEFT, fill=X)
+# ttk.Button(main, text="Quit", command=root.destroy).pack(side=RIGHT, fill=X)
 
 """
 Missing off the value for the fill parameter means that the buttons will stay at the size defined by their text content, but
 will remain stuck to the edges we defined using side.
 """
-#ttk.Button(main, text="Greet", command=greet).pack(side=LEFT)
-#ttk.Button(main, text="Quit", command=root.destroy).pack(side=RIGHT)
+# ttk.Button(main, text="Greet", command=greet).pack(side=LEFT)
+# ttk.Button(main, text="Quit", command=root.destroy).pack(side=RIGHT)
 
 """
 By default, the buttons will stack underneath each other.
 """
-#ttk.Button(main, text="Greet", command=greet).pack()
-#ttk.Button(main, text="Quit", command=root.destroy).pack()
+# ttk.Button(main, text="Greet", command=greet).pack()
+# ttk.Button(main, text="Quit", command=root.destroy).pack()
 
 root.mainloop()

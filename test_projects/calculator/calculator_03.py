@@ -45,8 +45,12 @@ def create_button(text):
     return ttk.Button(buttons, text=text, command=lambda: handle_click(text))
 
 
-texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'],
-         ['7', '8', '9', '-'], ['.', '0', '=', '+'])
+texts = (
+    ["1", "2", "3", "/"],
+    ["4", "5", "6", "*"],
+    ["7", "8", "9", "-"],
+    [".", "0", "=", "+"],
+)
 
 for i, text_group in enumerate(texts):
     button_row = [create_button(text) for text in text_group]

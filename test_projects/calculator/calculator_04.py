@@ -1,13 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
-import os    # Imported to allow for finding the calculator icon
+import os  # Imported to allow for finding the calculator icon
 
 
 class CalculatorApp(tk.Tk):
-
     def __init__(self, *args, **kwargs):
         # Initialise Tkinter along with the MainApplication
-        tk.Tk.__init__(self, *args, **kwargs)
+        super().__init__(self, *args, **kwargs)
 
         # Create an encompassing Frame called container.
         container = ttk.Frame(self)
@@ -46,11 +45,14 @@ class CalculatorApp(tk.Tk):
 
 
 class Buttons(ttk.Frame):
-
     def __init__(self, parent, controller):
-        ttk.Frame.__init__(self, parent)
-        texts = (['1', '2', '3', '/'], ['4', '5', '6', '*'],
-                 ['7', '8', '9', '-'], ['.', '0', '=', '+'])
+        super().__init__(self, parent)
+        texts = (
+            ["1", "2", "3", "/"],
+            ["4", "5", "6", "*"],
+            ["7", "8", "9", "-"],
+            [".", "0", "=", "+"],
+        )
 
         for i, text_group in enumerate(texts):
             button_row = [self.create_button(text) for text in text_group]
@@ -67,5 +69,5 @@ class Buttons(ttk.Frame):
 
 root = CalculatorApp()
 
-root.call('wm', 'iconphoto', root._w, tk.PhotoImage('calc.gif'))
+root.call("wm", "iconphoto", root._w, tk.PhotoImage("calc.gif"))
 root.mainloop()

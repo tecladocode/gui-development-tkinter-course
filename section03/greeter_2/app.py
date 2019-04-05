@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-def greet(*args):
+def greet():
     name = user_name.get()
     greeting_message.set(f"Hello, {name or 'World'}!")
     greeting.grid(row=1, column=0, columnspan=2, sticky="W", pady=(10, 0))

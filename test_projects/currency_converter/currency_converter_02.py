@@ -8,6 +8,7 @@ import matplotlib.animation as animation
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import matplotlib
+
 matplotlib.use("TkAgg")
 
 
@@ -43,16 +44,15 @@ def animate(i):
     data = requests.get(url)
     json_data = data.json()
 
-    dates, rates = zip(*json_data['USD_GBP'].items())
+    dates, rates = zip(*json_data["USD_GBP"].items())
 
     a.clear()
     a.plot(dates, rates)
 
 
 class CurrencyConverter(tk.Tk):
-
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+        super().__init__(self, *args, **kwargs)
 
         self.title("Currency Converter")
 
@@ -74,19 +74,20 @@ class CurrencyConverter(tk.Tk):
 
 
 class Home(ttk.Frame):
-
     def __init__(self, parent, controller):
-        ttk.Frame.__init__(self, parent)
+        super().__init__(self, parent)
 
-        button = ttk.Button(self, text="Historical Data",
-                            command=lambda: controller.show_frame(HistoricalData))
+        button = ttk.Button(
+            self,
+            text="Historical Data",
+            command=lambda: controller.show_frame(HistoricalData),
+        )
         button.pack()
 
 
 class HistoricalData(ttk.Frame):
-
     def __init__(self, parent, controller):
-        ttk.Frame.__init__(self, parent)
+        super().__init__(self, parent)
 
         canvas = FigureCanvasTkAgg(fig, self)
         canvas.draw()
