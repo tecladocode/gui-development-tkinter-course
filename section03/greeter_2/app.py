@@ -22,9 +22,9 @@ root.rowconfigure(1, weight=1)
 
 name_label = ttk.Label(main, text="Name:")
 name_label.grid(row=0, column=0, padx=(0, 10))
-
 name_entry = ttk.Entry(main, width=15, textvariable=user_name)
 name_entry.grid(row=0, column=1)
+name_entry.focus()
 
 greeting = ttk.Label(main, textvariable=greeting_message)
 
@@ -35,7 +35,6 @@ buttons.columnconfigure(1, weight=1)
 
 greet_button = ttk.Button(buttons, text="Greet", command=greet)
 greet_button.grid(row=0, column=0, sticky="EW")
-
 quit_button = ttk.Button(buttons, text="Quit", command=root.destroy)
 quit_button.grid(row=0, column=1, sticky="EW")
 
