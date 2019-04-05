@@ -3,9 +3,8 @@ from tkinter import ttk
 
 
 class DistanceConverter(tk.Tk):
-
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+        super().__init__(self, *args, **kwargs)
 
         self.title("Distance Calculator")
         self.frames = {}
@@ -26,9 +25,8 @@ class DistanceConverter(tk.Tk):
 
 
 class MetresToFeet(ttk.Frame):
-
     def __init__(self, parent, controller):
-        ttk.Frame.__init__(self, parent)
+        super().__init__(self, parent)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
@@ -44,12 +42,16 @@ class MetresToFeet(ttk.Frame):
         feet_display = ttk.Label(self, textvariable=self.feet_value)
         feet_display.grid(column=2, row=2, sticky="EW")
 
-        calculate_button = ttk.Button(self, text="Calculate",
-            command=self.calculate_feet)
+        calculate_button = ttk.Button(
+            self, text="Calculate", command=self.calculate_feet
+        )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
-        switch_page_button = ttk.Button(self, text="Switch to feet conversion",
-            command=lambda: controller.show_frame(FeetToMetres))
+        switch_page_button = ttk.Button(
+            self,
+            text="Switch to feet conversion",
+            command=lambda: controller.show_frame(FeetToMetres),
+        )
         switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
@@ -58,15 +60,14 @@ class MetresToFeet(ttk.Frame):
     def calculate_feet(self, *args):
         try:
             value = float(self.metres_value.get())
-            self.feet_value.set('%.3f' % (value * 3.28084))
+            self.feet_value.set("%.3f" % (value * 3.28084))
         except ValueError:
             pass
 
 
 class FeetToMetres(ttk.Frame):
-
     def __init__(self, parent, controller):
-        ttk.Frame.__init__(self, parent)
+        super().__init__(self, parent)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
@@ -82,12 +83,16 @@ class FeetToMetres(ttk.Frame):
         metres_display = ttk.Label(self, textvariable=self.metres_value)
         metres_display.grid(column=2, row=2, sticky="EW")
 
-        calculate_button = ttk.Button(self, text="Calculate",
-            command=self.calculate_metres)
+        calculate_button = ttk.Button(
+            self, text="Calculate", command=self.calculate_metres
+        )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
-        switch_page_button = ttk.Button(self, text="Switch to metres conversion",
-            command=lambda: controller.show_frame(MetresToFeet))
+        switch_page_button = ttk.Button(
+            self,
+            text="Switch to metres conversion",
+            command=lambda: controller.show_frame(MetresToFeet),
+        )
         switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
@@ -96,7 +101,7 @@ class FeetToMetres(ttk.Frame):
     def calculate_metres(self, *args):
         try:
             value = float(self.feet_value.get())
-            self.metres_value.set('%.3f' % (value / 3.28084))
+            self.metres_value.set("%.3f" % (value / 3.28084))
         except ValueError:
             pass
 

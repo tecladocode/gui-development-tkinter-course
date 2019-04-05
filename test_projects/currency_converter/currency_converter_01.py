@@ -2,13 +2,17 @@
 
 from tkinter import ttk
 import tkinter as tk
+
 # Import animation to let us live update the plots.
 import matplotlib.animation as animation
+
 # Import matplotlib and define the backend to TkAgg to help it work with Tkinter.
 from matplotlib.figure import Figure
+
 # Gross import to grab the matplotlib canvas and the built in buttons to zoom and select, etc.
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import matplotlib
+
 matplotlib.use("TkAgg")
 
 
@@ -57,9 +61,8 @@ def animate(i):
 
 
 class CurrencyConverter(tk.Tk):
-
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+        super().__init__(self, *args, **kwargs)
 
         self.title("Currency Converter")
 
@@ -82,9 +85,8 @@ class CurrencyConverter(tk.Tk):
 
 
 class DummyData(ttk.Frame):
-
     def __init__(self, parent, controller):
-        ttk.Frame.__init__(self, parent)
+        super().__init__(self, parent)
 
         # Define a canvas, passing in some figure object.
         canvas = FigureCanvasTkAgg(fig, self)

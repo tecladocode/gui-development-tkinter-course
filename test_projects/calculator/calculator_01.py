@@ -55,7 +55,7 @@ Below we call the grid_configure method, allowing us to specify x and y padding 
 """
 for child in buttons.winfo_children():
     child.grid_configure(padx=5, pady=5)
-    child.configure(command=lambda button=child: handle_click(button['text']))
+    child.configure(command=lambda button=child: handle_click(button["text"]))
     """
     child.configure(command=lambda: handle_click(child['text'])) did not solve the repetition issue.
     All of the values for child['text'] end up being "+", as child in the first line of the for loop shares an extended

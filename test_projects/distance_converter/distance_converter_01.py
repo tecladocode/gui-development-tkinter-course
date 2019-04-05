@@ -84,10 +84,10 @@ For a label, the text content of that lable updates when the value of the associ
 changes. As such, when the value of feet_value changes, the text content of this Label will be
 instantly updated. 
 """
-ttk.Label(main, textvariable=feet_value).grid(
-    column=2, row=2, sticky="EW")
+ttk.Label(main, textvariable=feet_value).grid(column=2, row=2, sticky="EW")
 ttk.Button(main, text="Calculate", command=calculate_feet).grid(
-    column=1, row=3, columnspan=2, sticky="EW")
+    column=1, row=3, columnspan=2, sticky="EW"
+)
 
 ttk.Label(main, text="metres").grid(column=1, row=1, sticky="W", ipadx=5)
 ttk.Label(main, text="feet").grid(column=1, row=2, sticky="W", ipadx=5)
