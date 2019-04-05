@@ -47,7 +47,11 @@ class MetresToFeet(ttk.Frame):
         calculate_button = ttk.Button(self, text="Calculate", command=self.calculate_feet)
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
-        switch_page_button = ttk.Button(self, text="Switch to feet conversion", command=lambda: controller.show_frame(FeetToMetres))
+        switch_page_button = ttk.Button(
+            self,
+            text="Switch to feet conversion",
+            command=lambda: controller.show_frame(FeetToMetres)
+        )
         switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
@@ -80,12 +84,18 @@ class FeetToMetres(ttk.Frame):
         metres_display = ttk.Label(self, textvariable=self.metres_value)
         metres_display.grid(column=2, row=2, sticky="EW")
 
-        calculate_button = ttk.Button(self, text="Calculate",
-						command=self.calculate_metres)
+        calculate_button = ttk.Button(
+            self,
+            text="Calculate",
+            command=self.calculate_metres
+        )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
-        switch_page_button = ttk.Button(self, text="Switch to metres conversion",
-						command=lambda: controller.show_frame(MetresToFeet))
+        switch_page_button = ttk.Button(
+            self,
+            text="Switch to metres conversion",
+            command=lambda: controller.show_frame(MetresToFeet)
+        )
         switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
