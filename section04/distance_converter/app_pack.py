@@ -8,7 +8,7 @@ feet_value = tk.StringVar()
 metres_value = tk.StringVar()
 
 
-def calculate_feet():
+def calculate_feet(*args):
     try:
         value = float(metres_value.get())
         feet_value.set('%.3f' % (value * 3.28084))
