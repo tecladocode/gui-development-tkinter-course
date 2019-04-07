@@ -44,7 +44,11 @@ class MetresToFeet(ttk.Frame):
         feet_display = ttk.Label(self, textvariable=self.feet_value)
         feet_display.grid(column=2, row=2, sticky="EW")
 
-        calculate_button = ttk.Button(self, text="Calculate", command=self.calculate_feet)
+        calculate_button = ttk.Button(
+            self,
+            text="Calculate",
+            command=self.calculate_feet
+        )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
         switch_page_button = ttk.Button(
