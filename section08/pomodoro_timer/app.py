@@ -16,7 +16,7 @@ class PomodoroTimer(tk.Tk):
 
         self.frames = {}
 
-        for F in (Home, Settings):
+        for F in (Home, Settings, Timer):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="NESW")
@@ -31,6 +31,8 @@ class PomodoroTimer(tk.Tk):
 class Home(ttk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
+
+        # TODO: Create the home interface with three buttons: start, quit, and settings. Setting will likely have an icon.
 
         start_button = ttk.Button(self, text="Start")
         settings_button = ttk.Button(self, text="Settings", command=lambda: controller.show_frame(Settings)).pack()
@@ -88,6 +90,13 @@ class Settings(ttk.Frame):
 
         for child in settings_container.winfo_children():
             child.grid_configure(padx=5, pady=5)
+
+
+class Timer(ttk.Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+
+    # TODO: Create a timer area with custom styling to display the remaining time. Add four buttons to control the timer and access the settings panel.
 
 
 root = PomodoroTimer()
