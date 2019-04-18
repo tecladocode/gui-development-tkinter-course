@@ -10,9 +10,9 @@ class PomodoroTimer(tk.Tk):
         container = ttk.Frame(self)
         container.grid(padx=10, pady=10, sticky="EW")
         
-        self.pomodoro = tk.StringVar()
-        self.long_break = tk.StringVar()
-        self.short_break = tk.StringVar()
+        self.pomodoro = tk.StringVar(value=25)
+        self.long_break = tk.StringVar(value=10)
+        self.short_break = tk.StringVar(value=5)
 
         self.frames = {}
 
@@ -48,18 +48,42 @@ class Settings(ttk.Frame):
 
         pomodoro_label = ttk.Label(settings_container, text="Pomodoro: ")
         pomodoro_label.grid(column=0, row=0, sticky="W")
-        pomodoro_input = ttk.Entry(settings_container, width=10, textvariable=controller.pomodoro)
+        pomodoro_input = tk.Spinbox(
+            settings_container,
+            from_=0,
+            to=120,
+            increment=1,
+            justify="center",
+            textvariable=controller.pomodoro,
+            width=10
+        )
         pomodoro_input.grid(column=1, row=0, sticky="EW")
         pomodoro_input.focus()
 
         long_break_label = ttk.Label(settings_container, text="Long break time: ")
         long_break_label.grid(column=0, row=1, sticky="W")
-        long_break_input = ttk.Entry(settings_container, width=10, textvariable=controller.long_break)
+        long_break_input = tk.Spinbox(
+            settings_container,
+            from_=0,
+            to=60,
+            increment=1,
+            justify="center",
+            textvariable=controller.long_break,
+            width=10
+        )
         long_break_input.grid(column=1, row=1, sticky="EW")
 
         short_break_label = ttk.Label(settings_container, text="Short break time: ")
         short_break_label.grid(column=0, row=2, sticky="W")
-        short_break_input = ttk.Entry(settings_container, width=10, textvariable=controller.short_break)
+        short_break_input = tk.Spinbox(
+            settings_container,
+            from_=0,
+            to=30,
+            increment=1,
+            justify="center",
+            textvariable=controller.short_break,
+            width=10
+        )
         short_break_input.grid(column=1, row=2, sticky="EW")
 
         for child in settings_container.winfo_children():
