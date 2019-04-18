@@ -6,7 +6,7 @@ import os  # Imported to allow for finding the calculator icon
 class CalculatorApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         # Initialise Tkinter along with the MainApplication
-        super().__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Create an encompassing Frame called container.
         container = ttk.Frame(self)
@@ -46,7 +46,7 @@ class CalculatorApp(tk.Tk):
 
 class Buttons(ttk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(self, parent)
+        super().__init__(parent)
         texts = (
             ["1", "2", "3", "/"],
             ["4", "5", "6", "*"],

@@ -52,7 +52,7 @@ def animate(i):
 
 class CurrencyConverter(tk.Tk):
     def __init__(self, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.title("Currency Converter")
 
@@ -75,7 +75,7 @@ class CurrencyConverter(tk.Tk):
 
 class Home(ttk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(self, parent)
+        super().__init__(parent)
 
         button = ttk.Button(
             self,
@@ -87,7 +87,7 @@ class Home(ttk.Frame):
 
 class HistoricalData(ttk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(self, parent)
+        super().__init__(parent)
 
         canvas = FigureCanvasTkAgg(fig, self)
         canvas.draw()

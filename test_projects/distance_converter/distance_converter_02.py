@@ -4,7 +4,7 @@ from tkinter import ttk
 
 class DistanceConverter(tk.Tk):
     def __init__(self, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.title("Distance Calculator")
         self.frames = {}
@@ -26,7 +26,7 @@ class DistanceConverter(tk.Tk):
 
 class MetresToFeet(ttk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(self, parent)
+        super().__init__(parent)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
@@ -67,7 +67,7 @@ class MetresToFeet(ttk.Frame):
 
 class FeetToMetres(ttk.Frame):
     def __init__(self, parent, controller):
-        super().__init__(self, parent)
+        super().__init__(parent)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
