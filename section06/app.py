@@ -35,8 +35,7 @@ class MetresToFeet(ttk.Frame):
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
+        self.columnconfigure((0, 1), weight=1)
 
         metres_label = ttk.Label(self, text="metres")
         metres_label.grid(column=0, row=0, sticky="W", ipadx=5)
@@ -81,6 +80,7 @@ class FeetToMetres(ttk.Frame):
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
+        self.columnconfigure((0, 1), weight=1)
 
         feet_label = ttk.Label(self, text="feet")
         feet_label.grid(column=1, row=1, sticky="W", ipadx=5)
