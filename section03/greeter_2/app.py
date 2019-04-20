@@ -30,8 +30,10 @@ greeting = ttk.Label(main, textvariable=greeting_message)
 
 buttons = ttk.Frame(main, padding=(0, 10))
 buttons.grid(row=2, column=0, columnspan=2, sticky="EW")
-buttons.columnconfigure(0, weight=1)
-buttons.columnconfigure(1, weight=1)
+
+# buttons.columnconfigure(0, weight=1)
+# buttons.columnconfigure(1, weight=1)
+buttons.columnconfigure((0, 1), weight=1)
 
 greet_button = ttk.Button(buttons, text="Greet", command=greet)
 greet_button.grid(row=0, column=0, sticky="EW")
