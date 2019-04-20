@@ -9,9 +9,12 @@ class DistanceConverter(tk.Tk):
 
         self.title("Distance Calculator")
         self.frames = {}
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10, sticky="EW")
+        container.grid(padx=10, pady=10)
+        container.columnconfigure(0, weight=1)
 
         for F in (MetresToFeet, FeetToMetres):
             frame = F(container, self)
@@ -32,31 +35,33 @@ class MetresToFeet(ttk.Frame):
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
 
         metres_label = ttk.Label(self, text="metres")
-        metres_label.grid(column=1, row=1, sticky="W", ipadx=5)
+        metres_label.grid(column=0, row=0, sticky="W", ipadx=5)
         metres_input = ttk.Entry(self, width=10, textvariable=self.metres_value)
-        metres_input.grid(column=2, row=1, sticky="EW")
+        metres_input.grid(column=1, row=0, sticky="EW")
         metres_input.focus()
 
         feet_label = ttk.Label(self, text="feet")
-        feet_label.grid(column=1, row=2, sticky="W", ipadx=5)
+        feet_label.grid(column=0, row=1, sticky="W", ipadx=5)
         feet_display = ttk.Label(self, textvariable=self.feet_value)
-        feet_display.grid(column=2, row=2, sticky="EW")
+        feet_display.grid(column=1, row=1, sticky="EW")
 
         calculate_button = ttk.Button(
             self,
             text="Calculate",
             command=self.calculate_feet
         )
-        calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
+        calculate_button.grid(column=0, row=2, columnspan=2, sticky="EW")
 
         switch_page_button = ttk.Button(
             self,
             text="Switch to feet conversion",
             command=lambda: controller.show_frame(FeetToMetres)
         )
-        switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
+        switch_page_button.grid(column=0, row=3, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)

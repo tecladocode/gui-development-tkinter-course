@@ -6,9 +6,12 @@ class PomodoroTimer(tk.Tk):
         super().__init__(*args, **kwargs)
 
         self.title("Pomodoro Timer")
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10, sticky="EW")
+        container.grid(padx=10, pady=10)
+        container.columnconfigure(0, weight=1)
         
         self.pomodoro = tk.StringVar(value=25)
         self.long_break = tk.StringVar(value=10)
@@ -32,10 +35,24 @@ class Home(ttk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
 
-        # TODO: Create the home interface with three buttons: start, quit, and settings. Setting will likely have an icon.
+        self.columnconfigure(0, weight=1)
 
-        start_button = ttk.Button(self, text="Start")
-        settings_button = ttk.Button(self, text="Settings", command=lambda: controller.show_frame(Settings)).pack()
+        button_container = ttk.Frame(self, padding="30 15 30 15")
+        button_container.grid(row=0, column=0, sticky="EW")
+        button_container.columnconfigure(0, weight=1)
+
+        start_button = ttk.Button(button_container, text="Start")
+        start_button.grid(row=0, column=0, sticky="EW", pady=(0, 5))
+
+        settings_button = ttk.Button(
+            button_container,
+            text="Settings",
+            command=lambda: controller.show_frame(Settings)
+        )
+        settings_button.grid(row=1, column=0, sticky="EW", pady=(0, 5))
+
+        quit_button = ttk.Button(button_container, text="Quit", command=controller.destroy)
+        quit_button.grid(row=2, column=0, sticky="EW")
 
 
 class Settings(ttk.Frame):
@@ -44,9 +61,13 @@ class Settings(ttk.Frame):
 
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
+        self.grid(row=0, column=0, sticky="EW")
 
         settings_container = ttk.Frame(self, padding="30 15 30 15")
-        settings_container.grid()
+        settings_container.grid(row=0, column=0, sticky="EW")
+
+        settings_container.columnconfigure(0, weight=1)
+        settings_container.rowconfigure(1, weight=1)
 
         pomodoro_label = ttk.Label(settings_container, text="Pomodoro: ")
         pomodoro_label.grid(column=0, row=0, sticky="W")
