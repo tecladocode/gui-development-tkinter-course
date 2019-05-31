@@ -1,8 +1,6 @@
 from tkinter import ttk
 import tkinter as tk
-from components.home import Home
-from components.settings import Settings
-from components.timer import Timer
+from components.components import Home, Settings, Timer
 from collections import deque
 
 

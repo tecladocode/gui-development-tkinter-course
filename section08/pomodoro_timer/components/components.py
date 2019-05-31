@@ -1,7 +1,107 @@
 import tkinter as tk
 from tkinter import ttk
-from components.settings import Settings
 from collections import deque
+
+
+class Home(ttk.Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+
+        self.columnconfigure(0, weight=1)
+
+        self.button_container = ttk.Frame(self, padding="30 15 30 15")
+        self.button_container.grid(row=0, column=0, sticky="EW")
+        self.button_container.columnconfigure(0, weight=1)
+
+        self.timer_button = ttk.Button(
+            self.button_container, text="Timer", command=lambda: controller.show_frame(Timer)
+        )
+        self.timer_button.grid(row=0, column=0, sticky="EW", pady=(0, 5))
+
+        self.settings_button = ttk.Button(
+            self.button_container,
+            text="Settings",
+            command=lambda: controller.show_frame(Settings),
+        )
+        self.settings_button.grid(row=1, column=0, sticky="EW", pady=(0, 5))
+
+        self.quit_button = ttk.Button(
+            self.button_container, text="Quit", command=controller.destroy
+        )
+        self.quit_button.grid(row=2, column=0, sticky="EW")
+
+
+class Settings(ttk.Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+
+        self.settings_container = ttk.Frame(self, padding="30 15 30 15")
+        self.settings_container.grid(row=0, column=0, sticky="EW", columnspan="2")
+
+        self.settings_container.columnconfigure(0, weight=1)
+        self.settings_container.rowconfigure(1, weight=1)
+
+        self.pomodoro_label = ttk.Label(self.settings_container, text="Pomodoro: ")
+        self.pomodoro_label.grid(column=0, row=0, sticky="W")
+        self.pomodoro_input = tk.Spinbox(
+            self.settings_container,
+            from_=0,
+            to=120,
+            increment=1,
+            justify="center",
+            textvariable=controller.pomodoro,
+            width=10,
+        )
+        self.pomodoro_input.grid(column=1, row=0, sticky="EW")
+        self.pomodoro_input.focus()
+
+        self.long_break_label = ttk.Label(self.settings_container, text="Long break time: ")
+        self.long_break_label.grid(column=0, row=1, sticky="W")
+        self.long_break_input = tk.Spinbox(
+            self.settings_container,
+            from_=0,
+            to=60,
+            increment=1,
+            justify="center",
+            textvariable=controller.long_break,
+            width=10,
+        )
+        self.long_break_input.grid(column=1, row=1, sticky="EW")
+
+        self.short_break_label = ttk.Label(self.settings_container, text="Short break time: ")
+        self.short_break_label.grid(column=0, row=2, sticky="W")
+        self.short_break_input = tk.Spinbox(
+            self.settings_container,
+            from_=0,
+            to=30,
+            increment=1,
+            justify="center",
+            textvariable=controller.short_break,
+            width=10,
+        )
+        self.short_break_input.grid(column=1, row=2, sticky="EW")
+
+        for child in self.settings_container.winfo_children():
+            child.grid_configure(padx=5, pady=5)
+
+        self.home_button = ttk.Button(
+            self,
+            text="Home",
+            command=lambda: controller.show_frame(Home)
+        )
+        self.home_button.grid(column=0, row=1, sticky="EW", padx=2)
+
+        self.timer_button = ttk.Button(
+            self,
+            text="Timer",
+            command=lambda: controller.show_frame(Timer)
+        )
+        self.timer_button.grid(column=1, row=1, sticky="EW", padx=2
+        )
 
 
 class Timer(ttk.Frame):
@@ -22,8 +122,6 @@ class Timer(ttk.Frame):
             foreground="red",
             font="Courier 38"
         )
-
-        # TODO: Create a timer area with custom styling to display the remaining time. Add four buttons to control the timer and access the settings panel.
 
         self.settings_button = ttk.Button(
             self, text="Settings", command=lambda: controller.show_frame(Settings)
