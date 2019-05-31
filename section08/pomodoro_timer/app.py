@@ -3,17 +3,47 @@ import tkinter as tk
 from components.components import Home, Settings, Timer
 from collections import deque
 
+COLOUR_PRIMARY = "#360568"
+COLOR_PRIMARY_DARK = "#31045E"
+COLOUR_SECONDARY = "#6B42B2"
+COLOUR_LIGHT_TEXT = "#EBE0FF"
+
 
 class PomodoroTimer(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        style = ttk.Style()
+        style.configure("Timer.TFrame", background=COLOUR_PRIMARY)
+        style.configure("Background.TFrame", background=COLOUR_PRIMARY)
+        style.configure(
+            "TimerText.TLabel",
+            background=COLOUR_PRIMARY,
+            foreground=COLOUR_SECONDARY,
+            font="Courier 38"
+        )
+        style.configure(
+            "LightText.TLabel",
+            background=COLOUR_PRIMARY,
+            foreground=COLOUR_LIGHT_TEXT,
+            font="9"
+        )
+        style.configure(
+            "PomodoroButton.TButton",
+            background=COLOR_PRIMARY_DARK,
+            foreground=COLOUR_LIGHT_TEXT,
+            font="9"
+        )
+        
+        # Main app window is a tk widget, so background is set directly
+        self["background"] = COLOUR_PRIMARY
 
         self.title("Pomodoro Timer")
         self.columnconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10)
+        container.grid()
         container.columnconfigure(0, weight=1)
 
         self.pomodoro = tk.StringVar(value=25)
