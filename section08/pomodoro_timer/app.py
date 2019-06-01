@@ -1,11 +1,12 @@
 from tkinter import ttk
 import tkinter as tk
-from components.components import Home, Settings, Timer
+from components.components import Settings, Timer
 from collections import deque
 
 COLOUR_PRIMARY = "#2e3f4f"
 COLOUR_SECONDARY = "#293846"
-COLOUR_LIGHT_TEXT = "#EEEEEE"
+COLOUR_LIGHT_BACKGROUND = "#fff"
+COLOUR_LIGHT_TEXT = "#eee"
 COLOUR_DARK_TEXT = "#8095a8"
 
 
@@ -14,11 +15,11 @@ class PomodoroTimer(tk.Tk):
         super().__init__(*args, **kwargs)
 
         style = ttk.Style()
-        style.configure("Timer.TFrame", background="#FFF")
+        style.configure("Timer.TFrame", background=COLOUR_LIGHT_BACKGROUND)
         style.configure("Background.TFrame", background=COLOUR_PRIMARY)
         style.configure(
             "TimerText.TLabel",
-            background="#ffffff",
+            background=COLOUR_LIGHT_BACKGROUND,
             foreground=COLOUR_DARK_TEXT,
             font="Courier 38"
         )
@@ -55,12 +56,12 @@ class PomodoroTimer(tk.Tk):
 
         self.frames = {}
 
-        for F in (Home, Settings, Timer):
+        for F in (Settings, Timer):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="NESW")
 
-        self.show_frame(Home)
+        self.show_frame(Timer)
 
     def show_frame(self, container):
         frame = self.frames[container]
@@ -69,24 +70,3 @@ class PomodoroTimer(tk.Tk):
 
 root = PomodoroTimer()
 root.mainloop()
-
-
-"""
-activebackground − Background color for the widget when the widget is active.
-
-activeforeground − Foreground color for the widget when the widget is active.
-
-background − Background color for the widget. This can also be represented as bg.
-
-disabledforeground − Foreground color for the widget when the widget is disabled.
-
-foreground − Foreground color for the widget. This can also be represented as fg.
-
-highlightbackground − Background color of the highlight region when the widget has focus.
-
-highlightcolor − Foreground color of the highlight region when the widget has focus.
-
-selectbackground − Background color for the selected items of the widget.
-
-selectforeground − Foreground color for the selected items of the widget.
-"""

@@ -3,45 +3,6 @@ from tkinter import ttk
 from collections import deque
 
 
-class Home(ttk.Frame):
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-
-        self["style"] = "Background.TFrame"
-
-        self.columnconfigure(0, weight=1)
-
-        self.button_container = ttk.Frame(self, padding="30 15 30 15", style="Background.TFrame")
-        self.button_container.grid(row=0, column=0, sticky="EW", padx=10, pady=10)
-        self.button_container.columnconfigure(0, weight=1)
-
-        self.timer_button = ttk.Button(
-            self.button_container,
-            text="Timer",
-            command=lambda: controller.show_frame(Timer),
-            style="PomodoroButton.TButton"
-        )
-        self.timer_button.grid(row=0, column=0, sticky="EW", pady=(0, 5))
-
-        self.settings_button = ttk.Button(
-            self.button_container,
-            text="Settings",
-            command=lambda: controller.show_frame(Settings),
-            style="PomodoroButton.TButton"
-        )
-        self.settings_button.grid(row=1, column=0, sticky="EW", pady=(0, 5))
-
-        self.quit_button = ttk.Button(
-            self.button_container,
-            text="Quit",
-            command=controller.destroy,
-            style="PomodoroButton.TButton"
-        )
-        self.quit_button.grid(row=2, column=0, sticky="EW")
-    
-
-
-
 class Settings(ttk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
@@ -119,23 +80,14 @@ class Settings(ttk.Frame):
         self.button_container = ttk.Frame(self, style="Background.TFrame")
         self.button_container.grid(sticky="EW", padx=10)
         self.button_container.columnconfigure(0, weight=1)
-        self.button_container.columnconfigure(1, weight=1)
-
-        self.home_button = ttk.Button(
-            self.button_container,
-            text="Home",
-            command=lambda: controller.show_frame(Home),
-            style="PomodoroButton.TButton"
-        )
-        self.home_button.grid(column=0, row=1, sticky="EW", padx=2)
 
         self.timer_button = ttk.Button(
             self.button_container,
-            text="Timer",
+            text="← Back",
             command=lambda: controller.show_frame(Timer),
             style="PomodoroButton.TButton"
         )
-        self.timer_button.grid(column=1, row=1, sticky="EW", padx=2
+        self.timer_button.grid(column=0, row=0, sticky="EW", padx=2
         )
 
 
