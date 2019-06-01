@@ -167,7 +167,7 @@ class Timer(ttk.Frame):
         self.timer_description.grid(row=0, column=0, sticky="W", padx=(10, 0), pady=(10, 0))
 
         self.timer_frame = ttk.Frame(self, height="100", style="Timer.TFrame")
-        self.timer_frame.grid(row=1, column=0, columnspan=2, padx=10, pady=(10, 0), sticky="NSEW")
+        self.timer_frame.grid(row=1, column=0, columnspan=2, pady=(10, 0), sticky="NSEW")
 
         self.timer_counter = ttk.Label(
             self.timer_frame,

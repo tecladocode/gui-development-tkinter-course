@@ -3,10 +3,10 @@ import tkinter as tk
 from components.components import Home, Settings, Timer
 from collections import deque
 
-COLOUR_PRIMARY = "#360568"
-COLOR_PRIMARY_DARK = "#31045E"
-COLOUR_SECONDARY = "#6B42B2"
-COLOUR_LIGHT_TEXT = "#EBE0FF"
+COLOUR_PRIMARY = "#2e3f4f"
+COLOUR_SECONDARY = "#293846"
+COLOUR_LIGHT_TEXT = "#EEEEEE"
+COLOUR_DARK_TEXT = "#8095a8"
 
 
 class PomodoroTimer(tk.Tk):
@@ -14,25 +14,23 @@ class PomodoroTimer(tk.Tk):
         super().__init__(*args, **kwargs)
 
         style = ttk.Style()
-        style.configure("Timer.TFrame", background=COLOUR_PRIMARY)
+        style.configure("Timer.TFrame", background="#FFF")
         style.configure("Background.TFrame", background=COLOUR_PRIMARY)
         style.configure(
             "TimerText.TLabel",
-            background=COLOUR_PRIMARY,
-            foreground=COLOUR_SECONDARY,
+            background="#ffffff",
+            foreground=COLOUR_DARK_TEXT,
             font="Courier 38"
         )
         style.configure(
             "LightText.TLabel",
             background=COLOUR_PRIMARY,
             foreground=COLOUR_LIGHT_TEXT,
-            font="9"
         )
         style.configure(
             "PomodoroButton.TButton",
-            background=COLOR_PRIMARY_DARK,
+            background=COLOUR_SECONDARY,
             foreground=COLOUR_LIGHT_TEXT,
-            font="9"
         )
         
         # Main app window is a tk widget, so background is set directly
@@ -71,3 +69,24 @@ class PomodoroTimer(tk.Tk):
 
 root = PomodoroTimer()
 root.mainloop()
+
+
+"""
+activebackground − Background color for the widget when the widget is active.
+
+activeforeground − Foreground color for the widget when the widget is active.
+
+background − Background color for the widget. This can also be represented as bg.
+
+disabledforeground − Foreground color for the widget when the widget is disabled.
+
+foreground − Foreground color for the widget. This can also be represented as fg.
+
+highlightbackground − Background color of the highlight region when the widget has focus.
+
+highlightcolor − Foreground color of the highlight region when the widget has focus.
+
+selectbackground − Background color for the selected items of the widget.
+
+selectforeground − Foreground color for the selected items of the widget.
+"""
