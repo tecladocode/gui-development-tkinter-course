@@ -17,6 +17,7 @@ class Settings(ttk.Frame):
             padding="30 15 30 15",
             style="Background.TFrame"
         )
+
         self.settings_container.grid(row=0, column=0, sticky="EW", padx=10, pady=10)
 
         self.settings_container.columnconfigure(0, weight=1)
@@ -27,6 +28,7 @@ class Settings(ttk.Frame):
             text="Pomodoro: ",
             style="LightText.TLabel"
         )
+
         self.pomodoro_label.grid(column=0, row=0, sticky="W")
         self.pomodoro_input = tk.Spinbox(
             self.settings_container,
@@ -37,6 +39,7 @@ class Settings(ttk.Frame):
             textvariable=controller.pomodoro,
             width=10,
         )
+
         self.pomodoro_input.grid(column=1, row=0, sticky="EW")
         self.pomodoro_input.focus()
 
@@ -45,6 +48,7 @@ class Settings(ttk.Frame):
             text="Long break time: ",
             style="LightText.TLabel"
         )
+
         self.long_break_label.grid(column=0, row=1, sticky="W")
         self.long_break_input = tk.Spinbox(
             self.settings_container,
@@ -55,6 +59,7 @@ class Settings(ttk.Frame):
             textvariable=controller.long_break,
             width=10,
         )
+
         self.long_break_input.grid(column=1, row=1, sticky="EW")
 
         self.short_break_label = ttk.Label(
@@ -62,6 +67,7 @@ class Settings(ttk.Frame):
             text="Short break time: ",
             style="LightText.TLabel"
         )
+
         self.short_break_label.grid(column=0, row=2, sticky="W")
         self.short_break_input = tk.Spinbox(
             self.settings_container,
@@ -72,6 +78,7 @@ class Settings(ttk.Frame):
             textvariable=controller.short_break,
             width=10,
         )
+
         self.short_break_input.grid(column=1, row=2, sticky="EW")
 
         for child in self.settings_container.winfo_children():
@@ -85,10 +92,11 @@ class Settings(ttk.Frame):
             self.button_container,
             text="← Back",
             command=lambda: controller.show_frame(Timer),
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
-        self.timer_button.grid(column=0, row=0, sticky="EW", padx=2
-        )
+
+        self.timer_button.grid(column=0, row=0, sticky="EW", padx=2)
 
 
 class Timer(ttk.Frame):
@@ -107,8 +115,10 @@ class Timer(ttk.Frame):
             self,
             text="Settings",
             command=lambda: controller.show_frame(Settings),
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
+
         self.settings_button.grid(row=0, column=1, sticky="E", padx=10, pady=(10, 0))
 
         self.timer_description = ttk.Label(
@@ -116,6 +126,7 @@ class Timer(ttk.Frame):
             textvariable=self.current_timer,
             style="LightText.TLabel"
         )
+
         self.timer_description.grid(row=0, column=0, sticky="W", padx=(10, 0), pady=(10, 0))
 
         self.timer_frame = ttk.Frame(self, height="100", style="Timer.TFrame")
@@ -126,6 +137,7 @@ class Timer(ttk.Frame):
             textvariable=controller.current_time,
             style="TimerText.TLabel"
         )
+
         self.timer_counter.place(relx=.5, rely=.5, anchor="center")
 
         self.button_container = ttk.Frame(self, padding=10, style="Background.TFrame")
@@ -136,8 +148,10 @@ class Timer(ttk.Frame):
             self.button_container,
             text="Start",
             command=self.start_timer,
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
+
         self.start_button.grid(row=0, column=0, sticky="EW")
 
         self.stop_button = ttk.Button(
@@ -145,16 +159,20 @@ class Timer(ttk.Frame):
             text="Stop",
             state="disabled",
             command=self.stop_timer,
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
+
         self.stop_button.grid(row=0, column=1, sticky="EW", padx=5)
 
         self.reset_button = ttk.Button(
             self.button_container,
             text="Reset",
             command=self.reset_timer,
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
+
         self.reset_button.grid(row=0, column=2, sticky="EW")
 
     def start_timer(self):
