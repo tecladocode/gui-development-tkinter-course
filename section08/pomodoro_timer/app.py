@@ -15,6 +15,8 @@ class PomodoroTimer(tk.Tk):
         super().__init__(*args, **kwargs)
 
         style = ttk.Style()
+        style.theme_use("clam")
+        
         style.configure("Timer.TFrame", background=COLOUR_LIGHT_BACKGROUND)
         style.configure("Background.TFrame", background=COLOUR_PRIMARY)
         style.configure(
@@ -33,6 +35,8 @@ class PomodoroTimer(tk.Tk):
             background=COLOUR_SECONDARY,
             foreground=COLOUR_LIGHT_TEXT,
         )
+
+        
         
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
@@ -70,3 +74,23 @@ class PomodoroTimer(tk.Tk):
 
 root = PomodoroTimer()
 root.mainloop()
+
+"""
+activebackground − Background color for the widget when the widget is active.
+
+activeforeground − Foreground color for the widget when the widget is active.
+
+background − Background color for the widget. This can also be represented as bg.
+
+disabledforeground − Foreground color for the widget when the widget is disabled.
+
+foreground − Foreground color for the widget. This can also be represented as fg.
+
+highlightbackground − Background color of the highlight region when the widget has focus.
+
+highlightcolor − Foreground color of the highlight region when the widget has focus.
+
+selectbackground − Background color for the selected items of the widget.
+
+selectforeground − Foreground color for the selected items of the widget.
+"""
