@@ -25,19 +25,19 @@ class PomodoroTimer(tk.Tk):
             foreground=COLOUR_DARK_TEXT,
             font="Courier 38"
         )
+
         style.configure(
             "LightText.TLabel",
             background=COLOUR_PRIMARY,
             foreground=COLOUR_LIGHT_TEXT,
         )
+
         style.configure(
             "PomodoroButton.TButton",
             background=COLOUR_SECONDARY,
             foreground=COLOUR_LIGHT_TEXT,
         )
 
-        
-        
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
 
@@ -74,23 +74,3 @@ class PomodoroTimer(tk.Tk):
 
 root = PomodoroTimer()
 root.mainloop()
-
-"""
-activebackground − Background color for the widget when the widget is active.
-
-activeforeground − Foreground color for the widget when the widget is active.
-
-background − Background color for the widget. This can also be represented as bg.
-
-disabledforeground − Foreground color for the widget when the widget is disabled.
-
-foreground − Foreground color for the widget. This can also be represented as fg.
-
-highlightbackground − Background color of the highlight region when the widget has focus.
-
-highlightcolor − Foreground color of the highlight region when the widget has focus.
-
-selectbackground − Background color for the selected items of the widget.
-
-selectforeground − Foreground color for the selected items of the widget.
-"""
