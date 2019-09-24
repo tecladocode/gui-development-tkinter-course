@@ -31,7 +31,11 @@ class PomodoroTimer(tk.Tk):
             background=COLOUR_PRIMARY,
             foreground=COLOUR_LIGHT_TEXT,
         )
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> a0da379... Sets initial theme to clam to make the styling platform independent.
         style.configure(
             "PomodoroButton.TButton",
             background=COLOUR_SECONDARY,
