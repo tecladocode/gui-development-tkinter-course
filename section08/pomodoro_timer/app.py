@@ -15,6 +15,8 @@ class PomodoroTimer(tk.Tk):
         super().__init__(*args, **kwargs)
 
         style = ttk.Style()
+        style.theme_use("clam")
+
         style.configure("Timer.TFrame", background=COLOUR_LIGHT_BACKGROUND)
         style.configure("Background.TFrame", background=COLOUR_PRIMARY)
         style.configure(
@@ -23,11 +25,13 @@ class PomodoroTimer(tk.Tk):
             foreground=COLOUR_DARK_TEXT,
             font="Courier 38"
         )
+
         style.configure(
             "LightText.TLabel",
             background=COLOUR_PRIMARY,
             foreground=COLOUR_LIGHT_TEXT,
         )
+
         style.configure(
             "PomodoroButton.TButton",
             background=COLOUR_SECONDARY,
