@@ -92,11 +92,11 @@ class Settings(ttk.Frame):
             self.button_container,
             text="← Back",
             command=lambda: controller.show_frame(Timer),
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
 
-        self.timer_button.grid(column=0, row=0, sticky="EW", padx=2
-        )
+        self.timer_button.grid(column=0, row=0, sticky="EW", padx=2)
 
 
 class Timer(ttk.Frame):
@@ -115,7 +115,8 @@ class Timer(ttk.Frame):
             self,
             text="Settings",
             command=lambda: controller.show_frame(Settings),
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
 
         self.settings_button.grid(row=0, column=1, sticky="E", padx=10, pady=(10, 0))
@@ -147,7 +148,8 @@ class Timer(ttk.Frame):
             self.button_container,
             text="Start",
             command=self.start_timer,
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
 
         self.start_button.grid(row=0, column=0, sticky="EW")
@@ -157,7 +159,8 @@ class Timer(ttk.Frame):
             text="Stop",
             state="disabled",
             command=self.stop_timer,
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
 
         self.stop_button.grid(row=0, column=1, sticky="EW", padx=5)
@@ -166,9 +169,10 @@ class Timer(ttk.Frame):
             self.button_container,
             text="Reset",
             command=self.reset_timer,
-            style="PomodoroButton.TButton"
+            style="PomodoroButton.TButton",
+            cursor="hand1"
         )
-        
+
         self.reset_button.grid(row=0, column=2, sticky="EW")
 
     def start_timer(self):

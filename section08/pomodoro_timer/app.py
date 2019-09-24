@@ -34,8 +34,13 @@ class PomodoroTimer(tk.Tk):
 
         style.configure(
             "PomodoroButton.TButton",
-            background=COLOUR_SECONDARY,
+            background=[COLOUR_SECONDARY],
             foreground=COLOUR_LIGHT_TEXT,
+        )
+
+        style.map(
+            "PomodoroButton.TButton",
+            background=[("active", COLOUR_PRIMARY), ("disabled", COLOUR_LIGHT_TEXT)]
         )
         
         # Main app window is a tk widget, so background is set directly
