@@ -16,7 +16,7 @@ class PomodoroTimer(tk.Tk):
 
         style = ttk.Style()
         style.theme_use("clam")
-        
+
         style.configure("Timer.TFrame", background=COLOUR_LIGHT_BACKGROUND)
         style.configure("Background.TFrame", background=COLOUR_PRIMARY)
         style.configure(
@@ -37,7 +37,7 @@ class PomodoroTimer(tk.Tk):
             background=COLOUR_SECONDARY,
             foreground=COLOUR_LIGHT_TEXT,
         )
-
+        
         # Main app window is a tk widget, so background is set directly
         self["background"] = COLOUR_PRIMARY
 
