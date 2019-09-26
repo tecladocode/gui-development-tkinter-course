@@ -3,64 +3,42 @@ from tkinter import ttk
 
 
 class DistanceConverter(tk.Tk):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.title("Distance Calculator")
-        self.frames = dict()
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10)
-        container.columnconfigure(0, weight=1)
+        container.grid(padx=10, pady=10, sticky="EW")
 
-        for FrameClass in (MetresToFeet, FeetToMetres):
-            frame = FrameClass(container, self)
-            self.frames[FrameClass] = frame
-            frame.grid(row=0, column=0, sticky="NSEW")
-
-        self.show_frame(MetresToFeet)
-
-    def show_frame(self, container):
-        frame = self.frames[container]
-        self.bind("<Return>", frame.calculate)
-        self.bind("<KP_Enter>", frame.calculate)
-        frame.tkraise()
+        frame = MetresToFeet(container)  # Alternative, FeetToMetres
+        frame.grid(row=0, column=0, sticky="NSEW")
 
 
 class MetresToFeet(ttk.Frame):
-
-    def __init__(self, container, controller):
+    def __init__(self, container):
         super().__init__(container)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
-        self.columnconfigure((0, 1), weight=1)
 
         metres_label = ttk.Label(self, text="Metres:")
         metres_label.grid(column=1, row=1, sticky="W", ipadx=5)
         metres_input = ttk.Entry(self, width=10, textvariable=self.metres_value)
-        metres_input.grid(column=1, row=0, sticky="EW")
+        metres_input.grid(column=2, row=1, sticky="EW")
         metres_input.focus()
 
         feet_label = ttk.Label(self, text="Feet:")
         feet_label.grid(column=1, row=2, sticky="W", ipadx=5)
         feet_display = ttk.Label(self, textvariable=self.feet_value)
-        feet_display.grid(column=1, row=1, sticky="EW")
+        feet_display.grid(column=2, row=2, sticky="EW")
 
         calculate_button = ttk.Button(
             self,
             text="Calculate",
             command=self.calculate_feet
         )
-        calculate_button.grid(column=0, row=2, columnspan=2, sticky="EW")
-
-        switch_page_button = ttk.Button(
-            self,
-            text="Switch to feet conversion",
-            command=lambda: controller.show_frame(FeetToMetres)
-        )
-        switch_page_button.grid(column=0, row=3, columnspan=2, sticky="EW")
+        calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)
@@ -74,21 +52,19 @@ class MetresToFeet(ttk.Frame):
 
 
 class FeetToMetres(ttk.Frame):
-
-    def __init__(self, container, controller):
+    def __init__(self, container):
         super().__init__(container)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
-        self.columnconfigure((0, 1), weight=1)
 
-        feet_label = ttk.Label(self, text="Feet:")
+        feet_label = ttk.Label(self, text="feet")
         feet_label.grid(column=1, row=1, sticky="W", ipadx=5)
         feet_input = ttk.Entry(self, width=10, textvariable=self.feet_value)
         feet_input.grid(column=2, row=1, sticky="EW")
         feet_input.focus()
 
-        metres_label = ttk.Label(self, text="Metres:")
+        metres_label = ttk.Label(self, text="metres")
         metres_label.grid(column=1, row=2, sticky="W", ipadx=5)
         metres_display = ttk.Label(self, textvariable=self.metres_value)
         metres_display.grid(column=2, row=2, sticky="EW")
@@ -99,13 +75,6 @@ class FeetToMetres(ttk.Frame):
             command=self.calculate_metres
         )
         calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
-
-        switch_page_button = ttk.Button(
-            self,
-            text="Switch to metres conversion",
-            command=lambda: controller.show_frame(MetresToFeet)
-        )
-        switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
             child.grid_configure(padx=5, pady=5)
