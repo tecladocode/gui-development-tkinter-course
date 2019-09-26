@@ -1,18 +1,20 @@
 import tkinter as tk
 from tkinter import ttk
+import tkinter.font as font
+from windows import set_dpi_awareness
+
+set_dpi_awareness()
 
 
 class DistanceConverter(tk.Tk):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.title("Distance Calculator")
+        self.title("Distance Converter")
         self.frames = dict()
 
         container = ttk.Frame(self)
-        container.grid(padx=10, pady=10)
-        container.columnconfigure(0, weight=1)
+        container.grid(padx=60, pady=30, sticky="EW")
 
         for FrameClass in (MetresToFeet, FeetToMetres):
             frame = FrameClass(container, self)
@@ -29,94 +31,89 @@ class DistanceConverter(tk.Tk):
 
 
 class MetresToFeet(ttk.Frame):
-
-    def __init__(self, container, controller):
-        super().__init__(container)
+    def __init__(self, container, controller, **kwargs):
+        super().__init__(container, **kwargs)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
-        self.columnconfigure((0, 1), weight=1)
 
         metres_label = ttk.Label(self, text="Metres:")
-        metres_label.grid(column=1, row=1, sticky="W", ipadx=5)
         metres_input = ttk.Entry(self, width=10, textvariable=self.metres_value)
-        metres_input.grid(column=1, row=0, sticky="EW")
-        metres_input.focus()
-
         feet_label = ttk.Label(self, text="Feet:")
-        feet_label.grid(column=1, row=2, sticky="W", ipadx=5)
         feet_display = ttk.Label(self, textvariable=self.feet_value)
-        feet_display.grid(column=1, row=1, sticky="EW")
-
-        calculate_button = ttk.Button(
-            self,
-            text="Calculate",
-            command=self.calculate_feet
-        )
-        calculate_button.grid(column=0, row=2, columnspan=2, sticky="EW")
-
+        calc_button = ttk.Button(self, text="Calculate", command=self.calculate)
         switch_page_button = ttk.Button(
             self,
             text="Switch to feet conversion",
             command=lambda: controller.show_frame(FeetToMetres)
         )
+
+        metres_label.grid(column=0, row=0, sticky="W")
+        metres_input.grid(column=1, row=0, sticky="EW")
+        metres_input.focus()
+
+        feet_label.grid(column=0, row=1, sticky="W")
+        feet_display.grid(column=1, row=1, sticky="EW")
+
+        calc_button.grid(column=0, row=2, columnspan=2, sticky="EW")
         switch_page_button.grid(column=0, row=3, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
-            child.grid_configure(padx=5, pady=5)
+            child.grid_configure(padx=15, pady=15)
 
-    def calculate_feet(self, *args):
+    def calculate(self, *args):
         try:
-            value = float(self.metres_value.get())
-            self.feet_value.set('%.3f' % (value * 3.28084))
+            metres = float(self.metres_value.get())
+            feet = metres * 3.28084
+            self.feet_value.set(f"{feet:.3f}")
         except ValueError:
             pass
 
 
 class FeetToMetres(ttk.Frame):
-
-    def __init__(self, container, controller):
-        super().__init__(container)
+    def __init__(self, container, controller, **kwargs):
+        super().__init__(container, **kwargs)
 
         self.feet_value = tk.StringVar()
         self.metres_value = tk.StringVar()
-        self.columnconfigure((0, 1), weight=1)
 
         feet_label = ttk.Label(self, text="Feet:")
-        feet_label.grid(column=1, row=1, sticky="W", ipadx=5)
         feet_input = ttk.Entry(self, width=10, textvariable=self.feet_value)
-        feet_input.grid(column=2, row=1, sticky="EW")
-        feet_input.focus()
-
         metres_label = ttk.Label(self, text="Metres:")
-        metres_label.grid(column=1, row=2, sticky="W", ipadx=5)
         metres_display = ttk.Label(self, textvariable=self.metres_value)
-        metres_display.grid(column=2, row=2, sticky="EW")
-
-        calculate_button = ttk.Button(
-            self,
-            text="Calculate",
-            command=self.calculate_metres
-        )
-        calculate_button.grid(column=1, row=3, columnspan=2, sticky="EW")
-
+        calc_button = ttk.Button(self, text="Calculate", command=self.calculate, style="AwesomeBtnStyle.TButton")
         switch_page_button = ttk.Button(
             self,
             text="Switch to metres conversion",
             command=lambda: controller.show_frame(MetresToFeet)
         )
-        switch_page_button.grid(column=1, row=4, columnspan=2, sticky="EW")
+
+        feet_label.grid(column=0, row=0, sticky="W")
+        feet_input.grid(column=1, row=0, sticky="EW")
+        feet_input.focus()
+
+        metres_label.grid(column=0, row=1, sticky="W")
+        metres_display.grid(column=1, row=1, sticky="EW")
+
+        calc_button.grid(column=0, row=2, columnspan=2, sticky="EW")
+        switch_page_button.grid(column=0, row=3, columnspan=2, sticky="EW")
 
         for child in self.winfo_children():
-            child.grid_configure(padx=5, pady=5)
+            child.grid_configure(padx=15, pady=15)
 
-    def calculate_metres(self, *args):
+    def calculate(self, *args):
         try:
-            value = float(self.feet_value.get())
-            self.metres_value.set('%.3f' % (value / 3.28084))
+            feet = float(self.feet_value.get())
+            metres = feet / 3.28084
+            self.metres_value.set(f"{metres:.3f}")
         except ValueError:
             pass
 
 
 root = DistanceConverter()
+
+font.nametofont("TkDefaultFont").configure(size=15)
+font.nametofont("TkTextFont").configure(size=15)
+
+root.columnconfigure(0, weight=1)
 root.mainloop()

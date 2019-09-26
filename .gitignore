@@ -1,0 +1,16 @@
+.vscode
+*.pyc
+videos
+*.mp4
+*.mkv
+*.sketch
+exported-assets
+*.png
+build
+dist
+*.spec
+__pycache__
+*.tscproj
+*.indd
+*.pdf
+endscreens
