@@ -1,6 +1,6 @@
 from tkinter import ttk
 import tkinter as tk
-from components.components import Settings, Timer
+from frames import Settings, Timer
 from collections import deque
 
 COLOUR_PRIMARY = "#2e3f4f"
@@ -61,15 +61,17 @@ class PomodoroTimer(tk.Tk):
         self.timer_schedule = deque(self.timer_order)
         
         self.current_time = tk.StringVar(value=f"{self.pomodoro.get()}:00")
-        self.timer_running = False
 
         self.frames = {}
 
-        for F in (Settings, Timer):
-            frame = F(container, self)
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="NESW")
+        settings_frame = Settings(container, self, lambda: self.show_frame(Timer))
+        timer_frame = Timer(container, self, lambda: self.show_frame(Settings))
+        settings_frame.grid(row=0, column=0, sticky="NESW")
+        timer_frame.grid(row=0, column=0, sticky="NESW")
 
+        self.frames[Settings] = settings_frame
+        self.frames[Timer] = timer_frame
+        
         self.show_frame(Timer)
 
     def show_frame(self, container):
