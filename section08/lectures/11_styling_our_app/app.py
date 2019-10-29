@@ -1,10 +1,8 @@
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
 from collections import deque
-from frames import Settings, Timer
-from windows import set_dpi_awareness
+from frames import Timer, Settings
 
-set_dpi_awareness()
 
 COLOUR_PRIMARY = "#2e3f4f"
 COLOUR_SECONDARY = "#293846"
@@ -26,21 +24,19 @@ class PomodoroTimer(tk.Tk):
             "TimerText.TLabel",
             background=COLOUR_LIGHT_BACKGROUND,
             foreground=COLOUR_DARK_TEXT,
-            font="Courier 46"
+            font="Courier 38"
         )
 
         style.configure(
             "LightText.TLabel",
             background=COLOUR_PRIMARY,
             foreground=COLOUR_LIGHT_TEXT,
-            font=("TkDefaultFont", 11)
         )
 
         style.configure(
             "PomodoroButton.TButton",
-            background=[COLOUR_SECONDARY],
+            background=COLOUR_SECONDARY,
             foreground=COLOUR_LIGHT_TEXT,
-            font=("TkDefaultFont", 11)
         )
 
         style.map(
@@ -81,6 +77,5 @@ class PomodoroTimer(tk.Tk):
         frame = self.frames[container]
         frame.tkraise()
 
-
-root = PomodoroTimer()
-root.mainloop()
+app = PomodoroTimer()
+app.mainloop()

@@ -20,3 +20,15 @@ pyinstaller app.py --onefile
 ```
 
 This will produce two folders: `build` and `dist`. Inside the latter, you'll find your executable. You can share and distribute this with other people, even if they don't have Python in their system!
+
+## Including data files
+
+To include a data folder, you'll need to add an option to the `pyinstaller` call:
+
+```
+pyinstaller app.py --onefile --add-data='assets;assets'
+```
+
+Note that in Mac and Linux, you'll need to do `--add-data='assets/*.png:assets'`, with a colon instead of a semicolon.
+
+That copies the local folder called "assets", and links it to a folder also called "assets" in the bundle.

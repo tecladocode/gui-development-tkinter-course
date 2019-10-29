@@ -13,8 +13,9 @@ class Timer(ttk.Frame):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=0)
 
-        self.current_timer_label = tk.StringVar(value=controller.timer_schedule[0])
+        self.current_timer_label = tk.StringVar(value=self.controller.timer_schedule[0])
         self.current_time = tk.StringVar(value=f"{controller.pomodoro.get()}:00")
+        self.timer_running = False
         self._timer_decrement_job = None
 
         settings_button = ttk.Button(
@@ -35,7 +36,7 @@ class Timer(ttk.Frame):
 
         timer_description.grid(row=0, column=0, sticky="W", padx=(10, 0), pady=(10, 0))
 
-        timer_frame = ttk.Frame(self, height="170", style="Timer.TFrame")
+        timer_frame = ttk.Frame(self, height="100", style="Timer.TFrame")
         timer_frame.grid(row=1, column=0, columnspan=2, pady=(10, 0), sticky="NSEW")
 
         timer_counter = ttk.Label(
@@ -43,8 +44,7 @@ class Timer(ttk.Frame):
             textvariable=self.current_time,
             style="TimerText.TLabel"
         )
-
-        timer_counter.place(relx=.5, rely=.5, anchor="center")
+        timer_counter.place(relx=0.5, rely=0.5, anchor="center")
 
         button_container = ttk.Frame(self, padding=10, style="Background.TFrame")
         button_container.grid(row=2, column=0, columnspan=2, sticky="EW")
@@ -80,7 +80,7 @@ class Timer(ttk.Frame):
         )
 
         reset_button.grid(row=0, column=2, sticky="EW")
-
+    
     def start_timer(self):
         self.timer_running = True
         self.start_button["state"] = "disabled"
@@ -95,7 +95,7 @@ class Timer(ttk.Frame):
         if self._timer_decrement_job:
             self.after_cancel(self._timer_decrement_job)
             self._timer_decrement_job = None
-
+    
     def reset_timer(self):
         self.stop_timer()
         pomodoro_time = self.controller.pomodoro.get()
@@ -118,10 +118,10 @@ class Timer(ttk.Frame):
 
             self.current_time.set(f"{minutes:02d}:{seconds:02d}")
             self._timer_decrement_job = self.after(1000, self.decrement_time)
-
         elif self.timer_running and current_time == "00:00":
             self.controller.timer_schedule.rotate(-1)
             next_up = self.controller.timer_schedule[0]
+            self.current_timer_label.set(next_up)
 
             if next_up == "Pomodoro":
                 pomodoro_time = int(self.controller.pomodoro.get())
@@ -133,7 +133,4 @@ class Timer(ttk.Frame):
                 long_break_time = int(self.controller.long_break.get())
                 self.current_time.set(f"{long_break_time:02d}:00")
             
-            self.current_timer_label.set(next_up)
             self._timer_decrement_job = self.after(1000, self.decrement_time)
-        else:  # Is this necessary?
-            return
