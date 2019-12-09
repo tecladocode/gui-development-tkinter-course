@@ -20,3 +20,4 @@ questions
 *.zip
 promo/
 *.pptx
+data.db
