@@ -5,7 +5,6 @@ videos
 *.mkv
 *.sketch
 exported-assets
-*.png
 build
 dist
 *.spec
